@@ -5,6 +5,8 @@ The model describes by-product (ethanol) formation at over-feeding as well as ga
 and even smaller amount of ethanol. Simulation is done using an FMU from Bioprocess Library *for* Modelica. Below a diagram
 with a typical simulation that you will get at the ned of the Jupyter notebook.
 
+![](FigX_BPL_YEAST_AIR_Fedbatch.png)
+
 You start up the notebook in Colab by pressing here
 [start BPL notebook](https://colab.research.google.com/github/janpeter19/BPL_YEAST_AIR_Fedbatch/blob/main/BPL_YEAST_AIR_Fedbatch.ipynb).
 Then you in the menu choose Runtime/Run all.
