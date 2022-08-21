@@ -7,10 +7,10 @@ with a typical simulation that you will get at the ned of the Jupyter notebook.
 
 ![](FigX_BPL_YEAST_AIR_Fedbatch.png)
 
-You see in the diagram several typical aspects of yeast fedbatch cultivation:
+You see in the diagram several typical aspects of yeast fedbatch cultivation (control variables in red):
 * Initial batch phase where glucose is consumed and ethanol produced until time 2.5 hour.
 * Later consumption of the produced ethanol (liquid phase) until time 8.0 hour. Note that growth rate slow down compared to the intial period. The specific oxygen upratek rate qO2 remains at maximal rate through this seamless switch of metabolism from glucose to ethanol.
-* Fedbatch feeding of glucose substrate at time 10.0 hour. Feed rate increase exponentially until 17 hours and then kept constant. The feed profile is chosen to keep some margin to overflow metabolism and the specific oxygen uprate rate qO2 remains lower than the maximal capacity.
+* Fedbatch feeding of glucose substrate at time 9.0 hour. Feed rate increase exponentially until 17 hours and then kept constant. The feed profile is chosen to keep some margin to overflow metabolism and the specific oxygen uprate rate qO2 remains lower than the maximal capacity.
 * During the last few hours from time 17 hours and on, the culture continue to grow but the total oxygen uptake rate remains constant as the substrate feed is. The total heat Q produced by the cultures is also constant during these last few hours.
 * During the fedbatch culture the stirrer speed control dissolved oxygen using PID-control. Note that the controller has some difficulty to eliminate the difference between setpoint and measured dissolved oxygen. This is a typical limitation of the I-part to handle the rapid increase of oxygen demand. The control error can be made smaller with a different tuning, but cannot be eliminate using PID-control.
 
