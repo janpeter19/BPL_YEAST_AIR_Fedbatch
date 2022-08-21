@@ -1,13 +1,13 @@
 # BPL_YEAST_AIR_Fedbatch
 
-This example of cultivation of yeast culture using fedbatch technique is realistic up to about a volume of a few cubic metres.
+This example of cultivation of yeast culture using fedbatch technique in laboratory scale.
 The model describes by-product (ethanol) formation at over-feeding as well as gas phase of oxygen, carbon dioxide
 and even smaller amount of ethanol. Simulation is done using an FMU from Bioprocess Library *for* Modelica. Below a diagram
 with a typical simulation that you will get at the ned of the Jupyter notebook.
 
 ![](FigX_BPL_YEAST_AIR_Fedbatch.png)
 
-You see in the diagram several typical aspects of yeast fedbatch cultivation (control variables in red):
+You see in the diagram several typical aspects of yeast fedbatch cultivation (control variables in cyan):
 * Initial batch phase where glucose is consumed and ethanol produced until time 2.5 hour. 
 * Later consumption of the produced ethanol (liquid phase) until time 8.0 hour. Note that growth rate slow down compared to the intial period. The specific oxygen upratek rate qO2 remains at maximal rate through this seamless switch of metabolism from glucose to ethanol.
 * An unecessary pause of one hour after end of batch to start of fedbatch and we see how the DO-control system respond.
