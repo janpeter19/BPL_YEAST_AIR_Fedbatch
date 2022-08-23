@@ -3,7 +3,7 @@
 This example of cultivation of yeast culture using fedbatch technique is in laboratory scale.
 The model describes by-product (ethanol) formation at over-feeding as well as gas phase of oxygen, carbon dioxide
 and even smaller amount of ethanol. Simulation is done using an FMU from Bioprocess Library *for* Modelica. Below a diagram
-with a typical simulation that you will get at the ned of the Jupyter notebook.
+with a typical simulation that you will get at the end of the Jupyter notebook.
 
 ![](FigX_BPL_YEAST_AIR_Fedbatch.png)
 
