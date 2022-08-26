@@ -48,6 +48,8 @@
 # 2022-01-28 - Updated with FMU-explore 0.8.8
 # 2022-03-26 - Updated to FMU-explore 0.9.0 - model.reset(), and par(), init()
 # 2022-08-21 - Update with FMU-explore 0.9.2 and also include a slightly modified plot
+# 2022-08-26 - Updated newplot() with new diagram for DO-control
+# 2022-08-26 - Test with Linux-FMU
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -192,7 +194,7 @@ global diagrams
 diagrams = []
 
 # Define standard diagrams
-def newplot(title='Fedbatch cultivation', plotType='TimeSeries'):
+def newplot(title='Yeast fedbatch cultivation', plotType='TimeSeries'):
    """ Standard plot window
         title = ''
        two possible diagrams
@@ -304,6 +306,40 @@ def newplot(title='Fedbatch cultivation', plotType='TimeSeries'):
       diagrams.append("ax6.plot(t,sim_res['bioreactor.inlet[1].F'],color='b',linestyle=linetype)")
       diagrams.append("ax7.plot(t,sim_res['bioreactor.V'],color='b',linestyle=linetype)")      
 
+
+   elif plotType == 'TimeSeries_3':
+   
+      plt.figure()
+      ax1 = plt.subplot(5,1,1)
+      ax2 = plt.subplot(5,1,2)
+      ax3 = plt.subplot(5,1,3)
+      ax4 = plt.subplot(5,1,4)
+
+      ax1.set_title(title)    
+      ax1.grid()
+      ax1.set_ylabel('DO [%]')    
+    
+      ax2.grid()
+      ax2.set_ylabel('N [rpm]') 
+
+      ax3.grid()
+      ax3.set_ylabel('OUR [mole/h]') 
+
+      ax4.grid()
+      ax4.set_ylabel('F [L/h]') 
+      ax4.set_xlabel('Time [h]') 
+
+      # List of commands to be executed by simu() after a simulation  
+      diagrams.clear()
+      diagrams.append("ax1.plot(t,sim_res['DOsensor.out'],color='b',linestyle=linetype)")
+      diagrams.append("ax1.plot(t,sim_res['DO_setpoint.y'],color='r',linestyle='--')")
+      diagrams.append("ax2.step(t,sim_res['bioreactor.N'],color='b',linestyle=linetype)")
+      diagrams.append("ax2.set_ylim([0,2500])")
+      diagrams.append("ax3.plot(t,sim_res['bioreactor.m[1]']*sim_res['bioreactor.culture.qO2'],color='b',linestyle=linetype)")
+      diagrams.append("ax4.plot(t,sim_res['bioreactor.inlet[1].F'],color='b',linestyle=linetype)")
+ 
+
+
    elif plotType in ['TimeSeriesExtended','Extended']:
 
       plt.figure()       
@@ -344,7 +380,7 @@ def newplot(title='Fedbatch cultivation', plotType='TimeSeries'):
       ax12.set_ylabel('qO2 [mole/h,g]')
 
       ax22.grid()
-      ax22.set_ylabel('OUR [mole/h]]')    
+      ax22.set_ylabel('OUR [mole/h]')    
 
       ax32.grid()
       ax32.set_ylabel('DO [%]')
@@ -419,7 +455,7 @@ def newplot(title='Fedbatch cultivation', plotType='TimeSeries'):
       ax42.set_ylabel('qO2 [mole/h,g]')
 
       ax52.grid()
-      ax52.set_ylabel('OUR [mole/h]]')    
+      ax52.set_ylabel('OUR [mole/h]')    
 
       ax62.grid()
       ax62.set_ylabel('Q [W]')        
@@ -628,7 +664,7 @@ def describe(name, decimals=3):
          
       print('Reactor gasphase substances included in the model')
       print()
-      print(N2_description, 'index      = ',N2, '- molecular weight = ', N2_mw, 'Da')
+      print(N2_description, 'index  = ',N2, '- molecular weight = ', N2_mw, 'Da')
       print(O2_description, 'index      = ',O2, '- molecular weight = ', O2_mw, 'Da')
       print(CO2_description, 'index     = ',CO2, '- molecular weight = ', CO2_mw, 'Da')
       print(E_description, 'index = ',E, '- molecular weight = ', E_mw, 'Da') 
