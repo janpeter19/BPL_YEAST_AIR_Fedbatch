@@ -50,6 +50,7 @@
 # 2022-08-21 - Update with FMU-explore 0.9.2 and also include a slightly modified plot
 # 2022-08-26 - Updated newplot() with new diagram for DO-control
 # 2022-08-26 - Test with Linux-FMU
+# 2022-08-26 - Take away not necessary plot-types fron newplot() amd only keep waht used for Colab-demo
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -205,208 +206,11 @@ def newplot(title='Yeast fedbatch cultivation', plotType='TimeSeries'):
    setLines()
 
    # Transfer of global axes to simu()
-   global ax1, ax2, ax3, ax4, ax5, ax6, ax7, ax8, ax9
+   global ax1, ax2, ax3, ax4
    global ax11, ax21, ax31, ax41, ax51, ax61, ax71
    global ax12, ax22, ax32, ax42, ax52, ax62, ax72     
    
-   if plotType == 'TimeSeries':
-   
-      plt.figure()
-      ax1 = plt.subplot(8,1,1)
-      ax2 = plt.subplot(8,1,2)
-      ax3 = plt.subplot(8,1,3)
-      ax4 = plt.subplot(8,1,4)
-      ax5 = plt.subplot(8,1,5)
-      ax6 = plt.subplot(8,1,6)
-      ax7 = plt.subplot(8,1,7)
-      ax8 = plt.subplot(8,1,8)
-        
-      ax1.set_title(title)
-      ax1.grid()
-      ax1.set_ylabel('G [g/L]')
-        
-      ax2.grid()
-      ax2.set_ylabel('E [g/L]')
-    
-      ax3.grid()
-      ax3.set_ylabel('DO [%]')    
-    
-      ax4.grid()
-      ax4.set_ylabel('X [g/L]')
-        
-      ax5.grid()
-      ax5.set_ylabel('mu [1/h]') 
-
-      ax6.grid()
-      ax6.set_ylabel('N [rpm]') 
-
-      ax7.grid()
-      ax7.set_ylabel('F [L/h]') 
- 
-      ax8.grid()
-      ax8.set_ylabel('V [L]')
-      ax8.set_xlabel('Time [h]') 
-
-      # List of commands to be executed by simu() after a simulation  
-      diagrams.clear()
-      diagrams.append("ax1.plot(t,sim_res['bioreactor.c[2]'],color='b',linestyle=linetype)")
-      diagrams.append("ax2.plot(t,sim_res['bioreactor.c[3]'],color='b',linestyle=linetype)")
-      diagrams.append("ax3.plot(t,sim_res['DOsensor.out'],color='b',linestyle=linetype)")
-      diagrams.append("ax3.plot(t,sim_res['DO_setpoint.y'],color='r',linestyle=':')")
-      diagrams.append("ax4.plot(t,sim_res['bioreactor.c[1]'],color='b',linestyle=linetype)")
-      diagrams.append("ax5.plot(t,sim_res['bioreactor.culture.q[1]'],color='r',linestyle=linetype)")
-      diagrams.append("ax6.step(t,sim_res['bioreactor.N'],color='b',linestyle=linetype)")
-      diagrams.append("ax6.set_ylim([0,2500])")
-      diagrams.append("ax7.plot(t,sim_res['bioreactor.inlet[1].F'],color='b',linestyle=linetype)")
-      diagrams.append("ax8.plot(t,sim_res['bioreactor.V'],color='b',linestyle=linetype)")      
-
-   elif plotType == 'TimeSeries_2':
-   
-      plt.figure()
-      ax1 = plt.subplot(9,1,1)
-      ax2 = plt.subplot(9,1,2)
-      ax3 = plt.subplot(9,1,3)
-      ax4 = plt.subplot(9,1,4)
-      ax5 = plt.subplot(9,1,5)
-      ax6 = plt.subplot(9,1,6)
-      ax7 = plt.subplot(9,1,7)
-
-        
-      ax1.set_title(title)
-      ax1.grid()
-      ax1.set_ylabel('G [g/L]')
-        
-      ax2.grid()
-      ax2.set_ylabel('E [g/L]')
-        
-      ax3.grid()
-      ax3.set_ylabel('X [g/L]')
-        
-      ax4.grid()
-      ax4.set_ylabel('mu [1/h]') 
-
-      ax5.grid()
-      ax5.set_ylabel('qO2[mole/(h*g)]') 
-
-      ax6.grid()
-      ax6.set_ylabel('F [L/h]') 
- 
-      ax7.grid()
-      ax7.set_ylabel('V [L]')
-      ax7.set_xlabel('Time [h]') 
-
-      # List of commands to be executed by simu() after a simulation  
-      diagrams.clear()
-      diagrams.append("ax1.plot(t,sim_res['bioreactor.c[2]'],color='b',linestyle=linetype)")
-      diagrams.append("ax2.plot(t,sim_res['bioreactor.c[3]'],color='b',linestyle=linetype)")
-      diagrams.append("ax3.plot(t,sim_res['bioreactor.c[1]'],color='b',linestyle=linetype)")
-      diagrams.append("ax4.plot(t,sim_res['bioreactor.culture.q[1]'],color='r',linestyle=linetype)")
-#      diagrams.append("ax5.plot(t,sim_res['bioreactor.culture.qO2'],color='b',linestyle=linetype)")
-      diagrams.append("ax5.set_ylim([0, 0.0080])")
-      diagrams.append("ax6.plot(t,sim_res['bioreactor.inlet[1].F'],color='b',linestyle=linetype)")
-      diagrams.append("ax7.plot(t,sim_res['bioreactor.V'],color='b',linestyle=linetype)")      
-
-
-   elif plotType == 'TimeSeries_3':
-   
-      plt.figure()
-      ax1 = plt.subplot(5,1,1)
-      ax2 = plt.subplot(5,1,2)
-      ax3 = plt.subplot(5,1,3)
-      ax4 = plt.subplot(5,1,4)
-
-      ax1.set_title(title)    
-      ax1.grid()
-      ax1.set_ylabel('DO [%]')    
-    
-      ax2.grid()
-      ax2.set_ylabel('N [rpm]') 
-
-      ax3.grid()
-      ax3.set_ylabel('OUR [mole/h]') 
-
-      ax4.grid()
-      ax4.set_ylabel('F [L/h]') 
-      ax4.set_xlabel('Time [h]') 
-
-      # List of commands to be executed by simu() after a simulation  
-      diagrams.clear()
-      diagrams.append("ax1.plot(t,sim_res['DOsensor.out'],color='b',linestyle=linetype)")
-      diagrams.append("ax1.plot(t,sim_res['DO_setpoint.y'],color='r',linestyle='--')")
-      diagrams.append("ax2.step(t,sim_res['bioreactor.N'],color='b',linestyle=linetype)")
-      diagrams.append("ax2.set_ylim([0,2500])")
-      diagrams.append("ax3.plot(t,sim_res['bioreactor.m[1]']*sim_res['bioreactor.culture.qO2'],color='b',linestyle=linetype)")
-      diagrams.append("ax4.plot(t,sim_res['bioreactor.inlet[1].F'],color='b',linestyle=linetype)")
- 
-
-
-   elif plotType in ['TimeSeriesExtended','Extended']:
-
-      plt.figure()       
-      ax11 = plt.subplot(7,2,1); ax12 = plt.subplot(7,2,2)   
-      ax21 = plt.subplot(7,2,3); ax22 = plt.subplot(7,2,4)    
-      ax31 = plt.subplot(7,2,5); ax32 = plt.subplot(7,2,6)   
-      ax41 = plt.subplot(7,2,7); ax42 = plt.subplot(7,2,8) 
-      ax51 = plt.subplot(7,2,9);
-      ax61 = plt.subplot(7,2,11); 
-      ax71 = plt.subplot(7,2,13);  
-
-      ax11.set_title(title)
-
-      ax11.grid()
-      ax11.set_ylabel('G [g/L]')
-
-      ax21.grid()
-      ax21.set_ylabel('E [g/L]')
-
-      ax31.grid()
-      ax31.set_ylabel('DO [%]')
-
-      ax41.grid()
-      ax41.set_ylabel('X [g/L]')
-
-      ax51.grid()
-      ax51.set_ylabel('mu [1/h]')
-
-      ax61.grid()
-      ax61.set_ylabel('N [rpm]')
-
-      ax71.grid()
-      ax71.set_ylabel('F [L/h]')
-
-      ax71.set_xlabel('Time [h]')
-
-      ax12.grid()
-      ax12.set_ylabel('qO2 [mole/h,g]')
-
-      ax22.grid()
-      ax22.set_ylabel('OUR [mole/h]')    
-
-      ax32.grid()
-      ax32.set_ylabel('DO [%]')
-
-      ax42.grid()
-      ax42.set_ylabel('Q [W]')        
-      ax42.set_xlabel('Time [h]')     
-      
-      # List of commands to be executed by simu() after a simulation  
-      diagrams.clear()
-      diagrams.append("ax11.plot(t,sim_res['bioreactor.c[2]'],color='b',linestyle=linetype)")
-      diagrams.append("ax21.plot(t,sim_res['bioreactor.c[3]'],color='b',linestyle=linetype)")
-      diagrams.append("ax31.plot(t,sim_res['DOsensor.out'],color='b',linestyle=linetype)")
-      diagrams.append("ax31.plot(t,sim_res['DO_setpoint.y'],color='r',linestyle=':')")
-      diagrams.append("ax41.plot(t,sim_res['bioreactor.c[1]'],color='b',linestyle=linetype)")
-      diagrams.append("ax51.plot(t,sim_res['bioreactor.culture.q[1]'],color='r',linestyle=linetype)")
-      diagrams.append("ax61.step(t,sim_res['bioreactor.N'],color='b',linestyle=linetype)")
-      diagrams.append("ax61.set_ylim([0,1500])")
-      diagrams.append("ax71.plot(t,sim_res['bioreactor.inlet[1].F'],color='b',linestyle=linetype)")
-      diagrams.append("ax12.plot(t,sim_res['bioreactor.culture.qO2'],color='r',linestyle=linetype)")
-      diagrams.append("ax22.plot(t,sim_res['bioreactor.m[1]']*sim_res['bioreactor.culture.qO2'],color='b',linestyle=linetype)")
-      diagrams.append("ax32.plot(t,sim_res['DOsensor.out'],color='b',linestyle=linetype)")
-      diagrams.append("ax32.plot(t,sim_res['DO_setpoint.y'],color='r',linestyle=':')")
-      diagrams.append("ax42.plot(t,sim_res['bioreactor.m[1]']*sim_res['bioreactor.culture.Qspec'],color='b',linestyle=linetype)")
-
-   elif plotType in ['TimeSeriesExtended','Extended_2']:
+   if plotType in ['Overview']:
 
       plt.figure()       
       ax11 = plt.subplot(7,2,1); ax12 = plt.subplot(7,2,2)   
@@ -483,123 +287,39 @@ def newplot(title='Yeast fedbatch cultivation', plotType='TimeSeries'):
       diagrams.append("ax52.plot(t,sim_res['bioreactor.m[1]']*sim_res['bioreactor.culture.qO2'],color='b',linestyle=linetype)")
       diagrams.append("ax62.plot(t,sim_res['bioreactor.m[1]']*sim_res['bioreactor.culture.Qspec'],color='b',linestyle=linetype)")
 
+   elif plotType in ['Focus DO-control']:
+   
+      plt.figure()
+      ax1 = plt.subplot(5,1,1)
+      ax2 = plt.subplot(5,1,2)
+      ax3 = plt.subplot(5,1,3)
+      ax4 = plt.subplot(5,1,4)
 
-   elif plotType in ['Textbook_2']:
+      ax1.set_title(title)    
+      ax1.grid()
+      ax1.set_ylabel('DO [%]')    
+    
+      ax2.grid()
+      ax2.set_ylabel('N [rpm]') 
 
-      plt.figure()       
-      ax11 = plt.subplot(6,2,1); ax12 = plt.subplot(6,2,2)   
-      ax21 = plt.subplot(6,2,3); ax22 = plt.subplot(6,2,4)    
-      ax31 = plt.subplot(6,2,5); ax32 = plt.subplot(6,2,6)   
-      ax41 = plt.subplot(6,2,7); ax42 = plt.subplot(6,2,8) 
-      ax51 = plt.subplot(6,2,9);
-      ax61 = plt.subplot(6,2,11); 
+      ax3.grid()
+      ax3.set_ylabel('OUR [mole/h]') 
 
-      ax11.set_title(title)
+      ax4.grid()
+      ax4.set_ylabel('F [L/h]') 
+      ax4.set_xlabel('Time [h]') 
 
-      ax11.grid()
-      ax11.set_ylabel('G [g/L]')
-
-      ax21.grid()
-      ax21.set_ylabel('E [g/L]')
-
-      ax31.grid()
-      ax31.set_ylabel('OUR [mole/h]')  
-
-      ax41.grid()
-      ax41.set_ylabel('X [g/L]')
-
-      ax51.grid()
-      ax51.set_ylabel('F [L/h]')
-
-      ax61.grid()
-      ax61.set_ylabel('V [L]')      
-      ax61.set_xlabel('Time [h]')
-
-      ax12.set_title(' - microscopic world')
-      ax12.grid()
-      ax12.set_ylabel('qG [mole/(h*g)]')
-
-      ax22.grid()
-      ax22.set_ylabel('qE [mole/(h*g)]')
-
-      ax32.grid()
-      ax32.set_ylabel('qO2 [mole/(h*g)]')
-      
-      ax42.grid()
-      ax42.set_ylabel('mu [1/h]')   
-      ax42.set_xlabel('Time [h]')     
-      
       # List of commands to be executed by simu() after a simulation  
       diagrams.clear()
-      diagrams.append("ax11.plot(t,sim_res['bioreactor.c[2]'],color='b',linestyle=linetype)")
-      diagrams.append("ax21.plot(t,sim_res['bioreactor.c[3]'],color='r',linestyle=linetype)")
-      diagrams.append("ax31.plot(t,sim_res['bioreactor.m[1]']*sim_res['bioreactor.culture.qO2'],color='b',linestyle=linetype)")
-      diagrams.append("ax41.plot(t,sim_res['bioreactor.c[1]'],color='b',linestyle=linetype)")
-      diagrams.append("ax51.plot(t,sim_res['bioreactor.inlet[1].F'],color='b',linestyle=linetype)")
-      diagrams.append("ax61.plot(t,sim_res['bioreactor.V'],color='b',linestyle=linetype)")
-
-      diagrams.append("ax12.plot(t,sim_res['bioreactor.culture.qGm'], color='b', linestyle=linetype)")
-      diagrams.append("ax12.plot(t,sim_res['bioreactor.culture.qGr'], color='g', linestyle=linetype)")  
-      diagrams.append("ax22.plot(t,-sim_res['bioreactor.culture.qEm'], color='r', linestyle=linetype)")
-      diagrams.append("ax22.plot(t,sim_res['bioreactor.culture.qEr'], color='g', linestyle=linetype)")
-      diagrams.append("ax32.plot(t,sim_res['bioreactor.culture.qO2'],color='g',linestyle=linetype)")  
-#      diagrams.append("ax32.plot([0,20], [0.0069, 0.0069],'r:')")      
-      diagrams.append("ax42.plot(t,sim_res['bioreactor.culture.q[1]'],color='b',linestyle=linetype)")
-
-   elif plotType in ['Textbook_2_half']:
-
-      plt.figure()       
-      ax11 = plt.subplot(6,2,1); ax12 = plt.subplot(6,2,2)   
-      ax21 = plt.subplot(6,2,3); ax22 = plt.subplot(6,2,4)    
-      ax31 = plt.subplot(6,2,5); ax32 = plt.subplot(6,2,6)   
-      ax41 = plt.subplot(6,2,7); ax42 = plt.subplot(6,2,8) 
-      ax51 = plt.subplot(6,2,9);
-      ax61 = plt.subplot(6,2,11); 
-
-      ax11.set_title(title)
-
-      ax11.grid()
-      ax11.set_ylabel('G [g/L]')
-
-      ax21.grid()
-      ax21.set_ylabel('E [g/L]')
-
-      ax31.grid()
-      ax31.set_ylabel('OUR [mole/h]')  
-
-      ax41.grid()
-      ax41.set_ylabel('X [g/L]')
-
-      ax51.grid()
-      ax51.set_ylabel('F [L/h]')
-
-      ax61.grid()
-      ax61.set_ylabel('V [L]')      
-      ax61.set_xlabel('Time [h]')
-
-      ax12.set_title(' - microscopic world')
-      ax12.grid()
-      ax12.set_ylabel('qG [mole/(h*g)]')
-
-      ax22.grid()
-      ax22.set_ylabel('qE [mole/(h*g)]')
-
-      ax32.grid()
-      ax32.set_ylabel('qO2 [mole/(h*g)]')
-      
-      ax42.grid()
-      ax42.set_ylabel('mu [1/h]')   
-      ax42.set_xlabel('Time [h]')     
-      
-      # List of commands to be executed by simu() after a simulation  
-      diagrams.clear()
-      diagrams.append("ax11.plot(t,sim_res['bioreactor.c[2]'],color='b',linestyle=linetype)")
-
-      diagrams.append("ax51.plot(t,sim_res['bioreactor.inlet[1].F'],color='b',linestyle=linetype)")
-          
+      diagrams.append("ax1.plot(t,sim_res['DOsensor.out'],color='b',linestyle=linetype)")
+      diagrams.append("ax1.plot(t,sim_res['DO_setpoint.y'],color='r',linestyle='--')")
+      diagrams.append("ax2.step(t,sim_res['bioreactor.N'],color='b',linestyle=linetype)")
+      diagrams.append("ax2.set_ylim([0,2500])")
+      diagrams.append("ax3.plot(t,sim_res['bioreactor.m[1]']*sim_res['bioreactor.culture.qO2'],color='b',linestyle=linetype)")
+      diagrams.append("ax4.plot(t,sim_res['bioreactor.inlet[1].F'],color='b',linestyle=linetype)")
+           
    else:
       print("Plot window type not correct")
-
 
 def eigValReactor(model):
    """Calculate from the model the eigenvalues for the reactor"""
