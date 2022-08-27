@@ -5,7 +5,7 @@ The model describes by-product (ethanol) formation at over-feeding as well as ga
 and even smaller amount of ethanol. Simulation is done using an FMU from Bioprocess Library *for* Modelica. Below a diagram
 with a typical simulation that you will get at the end of the Jupyter notebook.
 
-![](FigX_BPL_YEAST_AIR_Fedbatch.png)
+![](Fig1_BPL_YEAST_AIR_Fedbatch.png)
 
 You see in the diagram several typical aspects of yeast fedbatch cultivation (control variables in cyan):
 * Initial batch phase where glucose is consumed and ethanol produced until time 2.5 hour. 
