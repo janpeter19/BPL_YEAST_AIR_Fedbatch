@@ -51,6 +51,7 @@
 # 2022-08-26 - Updated newplot() with new diagram for DO-control
 # 2022-08-26 - Test with Linux-FMU
 # 2022-08-26 - Take away not necessary plot-types fron newplot() amd only keep waht used for Colab-demo
+# 2022-09-01 - Included parameter alpha_O2 and also took away mw[O2] from parLocation list
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -124,12 +125,15 @@ parDict['VE_0'] = 0.0
 parDict['V_tot'] = 8.0
 parDict['V_diss_O2_0'] = 0
 parDict['V_diss_CO2_0'] = 0
-parDict['V_gas_O2_0'] = 0
+parDict['V_gas_N2_0'] = 2.4
+parDict['V_gas_O2_0'] = 0.6
 parDict['V_gas_CO2_0'] = 0
 
 parDict['qGmax'] = 20.0e-3
 parDict['Ks'] = 10.0e-3
 parDict['qO2lim'] = 6.9e-3
+
+parDict['alpha_O2'] = 1.0
 
 parDict['feedtank_V_0'] = 50.0
 parDict['G_in'] = 500.0
@@ -160,12 +164,15 @@ parLocation['VE_0'] = 'bioreactor.m_0[3]'
 parLocation['V_tot'] = 'bioreactor.V_tot'
 parLocation['V_diss_O2_0'] = 'bioreactor.m_0[4]'
 parLocation['V_diss_CO2_0'] = 'bioreactor.m_0[5]'
+parLocation['V_gas_N2_0'] = 'bioreactor.V_gas_0[1]'
 parLocation['V_gas_O2_0'] = 'bioreactor.V_gas_0[2]'
 parLocation['V_gas_CO2_0'] = 'bioreactor.V_gas_0[3]'
 
 parLocation['qGmax'] = 'bioreactor.culture.qGmax' 
 parLocation['Ks'] = 'bioreactor.culture.Ks' 
 parLocation['qO2lim'] = 'bioreactor.culture.qO2lim' 
+
+parLocation['alpha_O2'] = 'bioreactor.gas_liquid_transfer.alpha_O2'
 
 parLocation['feedtank_V_0'] = 'feedtank.V_0'
 parLocation['G_in'] = 'feedtank.c_in[2]'
@@ -188,7 +195,7 @@ parLocation['N_low'] = 'N_low.k'
 parLocation['N_high'] = 'N_high.k'
 
 # Extended list of parameters and variables only for display and not change
-parLocation['gasphase.mw[1]'] = 'gasphase.mw[1]'
+# parLocation['gasphase.mw[1]'] = 'gasphase.mw[1]'
 
 # Create list of diagrams to be plotted by simu()
 global diagrams
