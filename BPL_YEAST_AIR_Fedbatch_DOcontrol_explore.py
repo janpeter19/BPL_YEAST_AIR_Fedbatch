@@ -53,6 +53,7 @@
 # 2022-08-26 - Take away not necessary plot-types fron newplot() amd only keep waht used for Colab-demo
 # 2022-09-01 - Included parameter alpha_O2 and also took away mw[O2] from parLocation list
 # 2022-09-13 - Updated for FMU-explore 0.9.3
+# 2022-09-17 - Updated for FMU-explore 0.9.5
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -196,7 +197,7 @@ parLocation['N_low'] = 'N_low.k'
 parLocation['N_high'] = 'N_high.k'
 
 # Extended list of parameters and variables only for display and not change
-# parLocation['gasphase.mw[1]'] = 'gasphase.mw[1]'
+parLocation['mu'] = 'bioreactor.culture.mu'
 
 # Create list of diagrams to be plotted by simu()
 global diagrams
@@ -339,7 +340,6 @@ def eigValReactor(model):
    (eigValues, eigVectors) = linalg.eig(A[0:4,0:4])
    return eigValues
 
-
 def describe(name, decimals=3):
    """Look up description of culture, media, as well as parameters and variables in the model code"""
            
@@ -410,7 +410,7 @@ def describe(name, decimals=3):
 
 #------------------------------------------------------------------------------------------------------------------
 #  General code 
-FMU_explore = 'FMU-explore ver 0.9.4'
+FMU_explore = 'FMU-explore ver 0.9.5'
 #------------------------------------------------------------------------------------------------------------------
 
 # Define function par() for parameter update
@@ -450,7 +450,7 @@ def disp(name='', decimals=3, mode='short'):
    
    if mode in ['short']:
       k = 0
-      for Location in parLocation.values():
+      for Location in [parLocation[k] for k in parDict.keys()]:
          if name in Location:
             if type(model.get(Location)[0]) != np.bool_:
                print(dict_reverser(parLocation)[Location] , ':', np.round(model.get(Location)[0],decimals))
@@ -467,7 +467,7 @@ def disp(name='', decimals=3, mode='short'):
                   print(parName,':', model.get(parLocation[parName])[0])
    if mode in ['long','location']:
       k = 0
-      for Location in parLocation.values():
+      for Location in [parLocation[k] for k in parDict.keys()]:
          if name in Location:
             if type(model.get(Location)[0]) != np.bool_:       
                print(Location,':', dict_reverser(parLocation)[Location] , ':', np.round(model.get(Location)[0],decimals))
