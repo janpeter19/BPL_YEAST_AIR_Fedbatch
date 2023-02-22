@@ -57,6 +57,7 @@
 # 2023-02-09 - Updated to FMU-explore 0.9.6e
 # 2023-02-13 - Consolidate FMU-explore to 0.9.6 and means parCheck and par() udpate and simu() with opts as arg
 # 2023-02-20 - Updatation to updated BPL.Control and block VarLimPID used
+# 2023-02-22 - Adjusted parDict, parLocation and simu('cont')
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -126,7 +127,7 @@ if flag_vendor in ['JM', 'jm']:
    MSL_version = model.get('MSL.version')[0]
    BPL_version = model.get('BPL.version')[0]
 elif flag_vendor in ['OM', 'om']:
-   MSL_usage = '3.2.3 - used components: RealInput, RealOutput, LimPID' 
+   MSL_usage = '3.2.3 - used components: RealInput, RealOutput, LimPID-components' 
    MSL_version = '3.2.3'
    BPL_version = 'Bioprocess Library version 2.1.1-beta' 
 else:    
@@ -181,14 +182,14 @@ parDict['airFlow_setpoint'] = 120.0
 
 parDict['DO_setpoint'] = 40.0
 parDict['DO_sensor_x_0'] = 87.0
-parDict['t_regStart'] = 0.0
+#parDict['t_regStart'] = 0.0
 #parDict['samplePeriod'] = 0.1
 parDict['K'] = 10.0
 parDict['Ti'] = 0.5
-#parDict['I_0'] = 500
+parDict['I_0'] = 0
+#parDict['D_0'] = 0
 parDict['N_low'] = 500
 parDict['N_high'] = 2000
-parDict['N_0'] = 500
 
 global parLocation; parLocation = {}
 parLocation['V_0'] = 'bioreactor.V_0'
@@ -221,14 +222,14 @@ parLocation['airFlow_setpoint'] = 'airFlow_setpoint.k'
 
 parLocation['DO_setpoint'] = 'DO_setpoint.k'
 parLocation['DO_sensor_x_0'] = 'DOsensor.x_0'
-parLocation['t_regStart'] = 'PIreg.t_regStart'
+#parLocation['t_regStart'] = 'PIreg.t_regStart'
 #parLocation['samplePeriod'] = 'PIreg.samplePeriod'
 parLocation['K'] = 'PIreg.K'
 parLocation['Ti'] = 'PIreg.Ti'
-#parLocation['I_0'] = 'PIreg.I_0'
+parLocation['I_0'] = 'PIreg.I_0'
+#parLocation['D_0'] = 'PIreg.D_0'
 parLocation['N_low'] = 'N_low.k'
 parLocation['N_high'] = 'N_high.k'
-parLocation['N_0'] = 'PIreg.u_0'
 
 # Extended list of parameters and variables only for display and not change
 parLocation['mu'] = 'bioreactor.culture.mu'
@@ -450,7 +451,7 @@ def describe(name, decimals=3):
 
 #------------------------------------------------------------------------------------------------------------------
 #  General code 
-FMU_explore = 'FMU-explore version 0.9.6'
+FMU_explore = 'FMU-explore version 0.9.7-beta'
 #------------------------------------------------------------------------------------------------------------------
 
 # Define function par() for parameter update
@@ -578,7 +579,12 @@ def simu(simulationTimeLocal=simulationTime, mode='Initial', options=opts_std, \
       try: 
          for key in stateDict.keys():
             if not key[-1] == ']':
-               model.set(key+'_0', stateDict[key])
+               if key[-3:] == 'I.y': 
+                  model.set(key[:-10]+'I_0', stateDict[key]) 
+               elif key[-3:] == 'D.x': 
+                  model.set(key[:-10]+'D_0', stateDict[key]) 
+               else:
+                  model.set(key+'_0', stateDict[key])
             elif key[-3] == '[':
                model.set(key[:-3]+'_0'+key[-3:], stateDict[key]) 
             elif key[-4] == '[':
