@@ -58,6 +58,7 @@
 # 2023-02-13 - Consolidate FMU-explore to 0.9.6 and means parCheck and par() udpate and simu() with opts as arg
 # 2023-02-20 - Updatation to updated BPL.Control and block VarLimPID used
 # 2023-02-22 - Adjusted parDict, parLocation and simu('cont')
+# 2023-02-23 - Added Kla_O2 and Kla_CO2 to the derived parameters that can be reached by describe()
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -233,6 +234,8 @@ parLocation['N_high'] = 'N_high.k'
 
 # Extended list of parameters and variables only for display and not change
 parLocation['mu'] = 'bioreactor.culture.mu'
+parLocation['Kla_O2'] = 'bioreactor.gas_liquid_transfer.Kla_O2'
+parLocation['Kla_CO2'] = 'bioreactor.gas_liquid_transfer.Kla_CO2'
 
 # Parameter value check - especially for hysteresis to avoid runtime error
 global parCheck; parCheck = []
