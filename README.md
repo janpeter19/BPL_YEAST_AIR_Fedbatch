@@ -17,8 +17,11 @@ You see in the diagram several typical aspects of yeast fedbatch cultivation (co
 * During the fedbatch culture the stirrer speed control dissolved oxygen using PID-control. Note that the controller has some difficulty to eliminate the difference between setpoint and measured dissolved oxygen. This is a typical limitation of the I-part to handle the rapid increase of oxygen demand. The control error can be made smaller with a different tuning, but cannot be eliminated using PID-control.
 
 You start up the notebook in Colab by pressing here
-[start BPL notebook](https://colab.research.google.com/github/janpeter19/BPL_YEAST_AIR_Fedbatch/blob/main/BPL_YEAST_AIR_Fedbatch_colab.ipynb).
-Then you in the menu choose Runtime/Run all. The installation takes just a few minutes. The subsequent execution of the simulations of microbial growth take just a second or so. 
+[start BPL notebook](https://colab.research.google.com/github/janpeter19/BPL_YEAST_AIR_Fedbatch/blob/main/BPL_YEAST_AIR_Fedbatch_colab.ipynb)
+or alternatively (experimentally)
+[start BPL notebook with FMPy](https://github.com/janpeter19/BPL_YEAST_AIR_Fedbatch/blob/main/BPL_YEAST_AIR_Fedbatch_fmpy_colab.ipynb).
+Then you in the menu choose Runtime/Run all. If you have chosen the altarnative with FMPy click first on the symbol Open in Colab.
+The subsequent execution of the simulations of microbial growth take just a second or so. 
 
 You can continue in the notebook and make new simulations and follow the examples given. Here are many things to explore!
 
