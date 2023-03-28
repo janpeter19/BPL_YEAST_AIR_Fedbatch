@@ -59,6 +59,7 @@
 # 2023-02-20 - Updatation to updated BPL.Control and block VarLimPID used
 # 2023-02-22 - Adjusted parDict, parLocation and simu('cont')
 # 2023-02-23 - Added Kla_O2 and Kla_CO2 to the derived parameters that can be reached by describe()
+# 2023-03-28 - Update FMU-explore 0.9.7
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -136,6 +137,7 @@ else:
 
 # Simulation time
 global simulationTime; simulationTime = 20.0
+global prevFinalTime; prevFinalTime = 0
 
 # Dictionary of time discrete states
 timeDiscreteStates = {} 
@@ -148,8 +150,9 @@ component_list_minimum = ['bioreactor', 'bioreactor.culture', 'bioreactor.gas_li
 #------------------------------------------------------------------------------------------------------------------
 
 # Create stateDict that later will be used to store final state and used for initialization in 'cont':
-#stateDict = model.get_states_list()
-global stateDict
+global stateDict; stateDict =  {}
+stateDict = model.get_states_list()
+stateDict.update(timeDiscreteStates)
 
 # Create dictionaries parDictLocation[] and parLocation[]
 global parDict; parDict = {}
@@ -454,7 +457,7 @@ def describe(name, decimals=3):
 
 #------------------------------------------------------------------------------------------------------------------
 #  General code 
-FMU_explore = 'FMU-explore version 0.9.7-beta'
+FMU_explore = 'FMU-explore version 0.9.7'
 #------------------------------------------------------------------------------------------------------------------
 
 # Define function par() for parameter update
@@ -552,6 +555,9 @@ def simu(simulationTimeLocal=simulationTime, mode='Initial', options=opts_std, \
    # Global variables
    global model, parDict, stateDict, prevFinalTime, simulationTime, sim_res, t
    
+   # Simulation flag
+   simulationDone = False
+   
    # Transfer of argument to global variable
    simulationTime = simulationTimeLocal 
       
@@ -574,12 +580,18 @@ def simu(simulationTimeLocal=simulationTime, mode='Initial', options=opts_std, \
       for key in parDict.keys():
          model.set(parLocation[key],parDict[key])   
       # Simulate
-      sim_res = model.simulate(final_time=simulationTime, options=options)      
+      sim_res = model.simulate(final_time=simulationTime, options=options)  
+      simulationDone = True
    elif mode in ['Continued', 'continued', 'cont']:
-      # Set parameters and intial state values:
-      for key in parDict.keys():
-         model.set(parLocation[key],parDict[key])                
-      try: 
+
+      if prevFinalTime == 0: 
+         print("Error: Simulation is first done with default mode = init'")      
+      else:
+         
+         # Set parameters and intial state values:
+         for key in parDict.keys():
+            model.set(parLocation[key],parDict[key])                
+
          for key in stateDict.keys():
             if not key[-1] == ']':
                if key[-3:] == 'I.y': 
@@ -597,34 +609,32 @@ def simu(simulationTimeLocal=simulationTime, mode='Initial', options=opts_std, \
             else:
                print('The state vecotr has more than 1000 states')
                break
-      except NameError:
-         print("Simulation is first done with default mode='init'")
-         prevFinalTime = 0
-      # Simulate
-      sim_res = model.simulate(start_time=prevFinalTime,
-                              final_time=prevFinalTime + simulationTime,
-                              options=options)     
+
+         # Simulate
+         sim_res = model.simulate(start_time=prevFinalTime,
+                                 final_time=prevFinalTime + simulationTime,
+                                 options=options) 
+         simulationDone = True             
    else:
       print("Simulation mode not correct")
-    
-   # Extract data
-   t = sim_res['time']
- 
-   # Plot diagrams
-   linetype = next(linecycler)    
-   for command in diagrams: eval(command)
-            
-   # Store final state values stateDict:
-   try: stateDict
-   except NameError:
-      stateDict = {}
-      stateDict = model.get_states_list()
-      stateDict.update(timeDiscreteStates)
-   for key in list(stateDict.keys()):
-      stateDict[key] = model.get(key)[0]        
 
-   # Store time from where simulation will start next time
-   prevFinalTime = model.time
+   if simulationDone:
+    
+      # Extract data
+      t = sim_res['time']
+ 
+      # Plot diagrams
+      linetype = next(linecycler)    
+      for command in diagrams: eval(command)
+            
+      # Store final state values stateDict:
+      for key in list(stateDict.keys()): stateDict[key] = model.get(key)[0]        
+
+      # Store time from where simulation will start next time
+      prevFinalTime = model.time
+   
+   else:
+      print('Error: No simulation done')
       
 # Describe model parts of the combined system
 def describe_parts(component_list=[]):
@@ -708,7 +718,7 @@ def BPL_info():
    print(' - newplot()   - make a new plot')
    print(' - show()      - show plot from previous simulation')
    print(' - disp()      - display parameters and initial values from the last simulation')
-   print(' - describe()  - describe culture, broth, parameters, variables with values/units')
+   print(' - describe()  - describe culture, broth, parameters, variables with values / units')
    print()
    print('Note that both disp() and describe() takes values from the last simulation')
    print()
