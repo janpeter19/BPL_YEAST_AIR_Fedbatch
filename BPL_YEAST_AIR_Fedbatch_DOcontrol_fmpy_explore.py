@@ -166,8 +166,9 @@ parDict['DO_setpoint'] = 40.0
 parDict['DO_sensor_x_0'] = 87.0
 parDict['K'] = 10.0
 parDict['Ti'] = 0.5
+parDict['Td'] = 0.0
 parDict['I_0'] = 0
-#parDict['D_0'] = 0
+parDict['D_0'] = 0
 parDict['N_low'] = 500
 parDict['N_high'] = 2000
 
@@ -204,8 +205,9 @@ parLocation['DO_setpoint'] = 'DO_setpoint.k'
 parLocation['DO_sensor_x_0'] = 'DOsensor.x_0'
 parLocation['K'] = 'PIreg.K'
 parLocation['Ti'] = 'PIreg.Ti'
+parLocation['Td'] = 'PIreg.Td'
 parLocation['I_0'] = 'PIreg.I_0'
-#parLocation['D_0'] = 'PIreg.D_0'
+parLocation['D_0'] = 'PIreg.D_0'
 parLocation['N_low'] = 'N_low.k'
 parLocation['N_high'] = 'N_high.k'
 
