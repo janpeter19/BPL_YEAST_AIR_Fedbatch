@@ -60,6 +60,7 @@
 # 2023-02-22 - Adjusted parDict, parLocation and simu('cont')
 # 2023-02-23 - Added Kla_O2 and Kla_CO2 to the derived parameters that can be reached by describe()
 # 2023-03-28 - Update FMU-explore 0.9.7
+# 2023-04-21 - Compiled for Ubuntu 20.04 and changed BPL_version
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -131,7 +132,7 @@ if flag_vendor in ['JM', 'jm']:
 elif flag_vendor in ['OM', 'om']:
    MSL_usage = '3.2.3 - used components: RealInput, RealOutput, LimPID-components' 
    MSL_version = '3.2.3'
-   BPL_version = 'Bioprocess Library version 2.1.1-beta' 
+   BPL_version = 'Bioprocess Library version 2.1.1' 
 else:    
    print('There is no FMU for this platform')
 
