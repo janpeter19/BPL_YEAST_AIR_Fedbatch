@@ -74,7 +74,9 @@ import sys
 import platform
 import locale
 import numpy as np 
-import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt
+import matplotlib.image as img
+import zipfile 
 from pyfmi import load_fmu
 from pyfmi.fmi import FMUException
 from itertools import cycle
