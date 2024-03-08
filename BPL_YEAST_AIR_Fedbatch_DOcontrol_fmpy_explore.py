@@ -99,14 +99,14 @@ else:
 global simulationTime; simulationTime = 20.0
 global prevFinalTime; prevFinalTime = 0
 
-# Provide process diagram on disk
-fmu_process_diagram ='BPL_GUI_TEST2_Fedbatch_process_diagram_om.png'
-
 # Dictionary of time discrete states
 timeDiscreteStates = {} 
 
 # Define a minimal compoent list of the model as a starting point for describe('parts')
 component_list_minimum = ['bioreactor', 'bioreactor.culture', 'bioreactor.gas_liquid_transfer']
+
+# Provide process diagram on disk
+fmu_process_diagram ='BPL_GUI_TEST2_Fedbatch_process_diagram_om.png'
 
 #------------------------------------------------------------------------------------------------------------------
 #  Specific application constructs: stateDict, parDict, diagrams, newplot(), describe()

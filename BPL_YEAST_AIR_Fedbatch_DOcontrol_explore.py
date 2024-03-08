@@ -136,7 +136,7 @@ if flag_vendor in ['JM', 'jm']:
 elif flag_vendor in ['OM', 'om']:
    MSL_usage = '3.2.3 - used components: RealInput, RealOutput, LimPID-components' 
    MSL_version = '3.2.3'
-   BPL_version = 'Bioprocess Library version 2.1.1' 
+   BPL_version = 'Bioprocess Library version 2.1.2 prel' 
 else:    
    print('There is no FMU for this platform')
 
@@ -144,14 +144,14 @@ else:
 global simulationTime; simulationTime = 20.0
 global prevFinalTime; prevFinalTime = 0
 
-# Provide process diagram on disk
-fmu_process_diagram ='BPL_GUI_TEST2_Fedbatch_process_diagram_om.png'
-
 # Dictionary of time discrete states
 timeDiscreteStates = {} 
 
 # Define a minimal compoent list of the model as a starting point for describe('parts')
 component_list_minimum = ['bioreactor', 'bioreactor.culture', 'bioreactor.gas_liquid_transfer']
+
+# Provide process diagram on disk
+fmu_process_diagram ='BPL_GUI_TEST2_Fedbatch_process_diagram_om.png'
 
 #------------------------------------------------------------------------------------------------------------------
 #  Specific application constructs: stateDict, parDict, diagrams, newplot(), describe()
@@ -164,17 +164,17 @@ stateDict.update(timeDiscreteStates)
 
 # Create dictionaries parDictLocation[] and parLocation[]
 global parDict; parDict = {}
-parDict['V_0'] = 4.5
-parDict['VX_0'] = 4.5*1.0
-parDict['VG_0'] = 4.5*5.0
-parDict['VE_0'] = 0.0
+parDict['V_start'] = 4.5
+parDict['VX_start'] = 4.5*1.0
+parDict['VG_start'] = 4.5*5.0
+parDict['VE_start'] = 0.0
 
 parDict['V_tot'] = 8.0
-parDict['V_diss_O2_0'] = 0
-parDict['V_diss_CO2_0'] = 0
-parDict['V_gas_N2_0'] = 2.4
-parDict['V_gas_O2_0'] = 0.6
-parDict['V_gas_CO2_0'] = 0
+parDict['V_diss_O2_start'] = 0
+parDict['V_diss_CO2_start'] = 0
+parDict['V_gas_N2_start'] = 2.4
+parDict['V_gas_O2_start'] = 0.6
+parDict['V_gas_CO2_start'] = 0
 
 parDict['qGmax'] = 20.0e-3
 parDict['Ks'] = 10.0e-3
@@ -182,40 +182,40 @@ parDict['qO2lim'] = 6.9e-3
 
 parDict['alpha_O2'] = 1.0
 
-parDict['feedtank_V_0'] = 50.0
+parDict['feedtank_V_start'] = 50.0
 parDict['G_in'] = 500.0
+parDict['F_start'] = 0.0
 parDict['mu_feed'] = 0.10
-parDict['F_0'] = 0.0
-parDict['t_start'] = 3.0
-parDict['F_start'] = 0.00133
+parDict['t_startExp'] = 3.0
+parDict['F_startExp'] = 0.00133
 parDict['F_max'] = 0.3
 
 parDict['airFlow_setpoint'] = 120.0
 
 parDict['DO_setpoint'] = 40.0
-parDict['DO_sensor_x_0'] = 87.0
+parDict['DO_sensor_x_start'] = 87.0
 #parDict['t_regStart'] = 0.0
 #parDict['samplePeriod'] = 0.1
 parDict['K'] = 10.0
 parDict['Ti'] = 0.5
 #parDict['Td'] = 0.0
-parDict['I_0'] = 0
-#parDict['D_0'] = 0
+parDict['I_start'] = 0
+#parDict['D_start'] = 0
 parDict['N_low'] = 500
 parDict['N_high'] = 2000
 
 global parLocation; parLocation = {}
-parLocation['V_0'] = 'bioreactor.V_0'
-parLocation['VX_0'] = 'bioreactor.m_0[1]' 
-parLocation['VG_0'] = 'bioreactor.m_0[2]' 
-parLocation['VE_0'] = 'bioreactor.m_0[3]' 
+parLocation['V_start'] = 'bioreactor.V_start'
+parLocation['VX_start'] = 'bioreactor.m_start[1]' 
+parLocation['VG_start'] = 'bioreactor.m_start[2]' 
+parLocation['VE_start'] = 'bioreactor.m_start[3]' 
 
 parLocation['V_tot'] = 'bioreactor.V_tot'
-parLocation['V_diss_O2_0'] = 'bioreactor.m_0[4]'
-parLocation['V_diss_CO2_0'] = 'bioreactor.m_0[5]'
-parLocation['V_gas_N2_0'] = 'bioreactor.V_gas_0[1]'
-parLocation['V_gas_O2_0'] = 'bioreactor.V_gas_0[2]'
-parLocation['V_gas_CO2_0'] = 'bioreactor.V_gas_0[3]'
+parLocation['V_diss_O2_start'] = 'bioreactor.m_start[4]'
+parLocation['V_diss_CO2_start'] = 'bioreactor.m_start[5]'
+parLocation['V_gas_N2_start'] = 'bioreactor.V_gas_start[1]'
+parLocation['V_gas_O2_start'] = 'bioreactor.V_gas_start[2]'
+parLocation['V_gas_CO2_start'] = 'bioreactor.V_gas_start[3]'
 
 parLocation['qGmax'] = 'bioreactor.culture.qGmax' 
 parLocation['Ks'] = 'bioreactor.culture.Ks' 
@@ -223,25 +223,25 @@ parLocation['qO2lim'] = 'bioreactor.culture.qO2lim'
 
 parLocation['alpha_O2'] = 'bioreactor.gas_liquid_transfer.alpha_O2'
 
-parLocation['feedtank_V_0'] = 'feedtank.V_0'
+parLocation['feedtank_V_start'] = 'feedtank.V_start'
 parLocation['G_in'] = 'feedtank.c_in[2]'
-parLocation['mu_feed'] = 'dosagescheme.mu_feed'
-parLocation['F_0'] = 'dosagescheme.F_0'
-parLocation['t_start'] = 'dosagescheme.t_start'
 parLocation['F_start'] = 'dosagescheme.F_start'
+parLocation['mu_feed'] = 'dosagescheme.mu_feed'
+parLocation['t_startExp'] = 'dosagescheme.t_startExp'
+parLocation['F_startExp'] = 'dosagescheme.F_startExp'
 parLocation['F_max'] = 'dosagescheme.F_max'
 
 parLocation['airFlow_setpoint'] = 'airFlow_setpoint.k'
 
 parLocation['DO_setpoint'] = 'DO_setpoint.k'
-parLocation['DO_sensor_x_0'] = 'DOsensor.x_0'
+parLocation['DO_sensor_x_start'] = 'DOsensor.x_start'
 #parLocation['t_regStart'] = 'PIreg.t_regStart'
 #parLocation['samplePeriod'] = 'PIreg.samplePeriod'
 parLocation['K'] = 'PIreg.K'
 parLocation['Ti'] = 'PIreg.Ti'
 #parLocation['Td'] = 'PIreg.Td'
-parLocation['I_0'] = 'PIreg.I_0'
-#parLocation['D_0'] = 'PIreg.D_0'
+parLocation['I_start'] = 'PIreg.I_start'
+#parLocation['D_start'] = 'PIreg.D_start'
 parLocation['N_low'] = 'N_low.k'
 parLocation['N_high'] = 'N_high.k'
 
@@ -252,9 +252,9 @@ parLocation['Kla_CO2'] = 'bioreactor.gas_liquid_transfer.Kla_CO2'
 
 # Parameter value check - especially for hysteresis to avoid runtime error
 global parCheck; parCheck = []
-parCheck.append("parDict['V_0'] > 0")
-parCheck.append("parDict['VX_0'] >= 0")
-parCheck.append("parDict['VG_0'] >= 0")
+parCheck.append("parDict['V_start'] > 0")
+parCheck.append("parDict['VX_start'] >= 0")
+parCheck.append("parDict['VG_start'] >= 0")
 
 # Create list of diagrams to be plotted by simu()
 global diagrams
@@ -467,7 +467,7 @@ def describe(name, decimals=3):
 
 #------------------------------------------------------------------------------------------------------------------
 #  General code 
-FMU_explore = 'FMU-explore version 0.9.8'
+FMU_explore = 'FMU-explore version 0.9.9'
 #------------------------------------------------------------------------------------------------------------------
 
 # Define function par() for parameter update
@@ -489,12 +489,12 @@ def par(parDict=parDict, parCheck=parCheck, parLocation=parLocation, *x, **x_kwa
 
 # Define function init() for initial values update
 def init(parDict=parDict, *x, **x_kwarg):
-   """ Set initial values and the name should contain string '_0' to be accepted.
+   """ Set initial values and the name should contain string '_start' to be accepted.
        The function can handle general parameter string location names if entered as a dictionary. """
    x_kwarg.update(*x)
    x_init={}
    for key in x_kwarg.keys():
-      if '_0' in key: 
+      if '_start' in key: 
          x_init.update({key: x_kwarg[key]})
       else:
          print('Error:', key, '- seems not an initial value, use par() instead - check the spelling')
@@ -559,7 +559,8 @@ def show(diagrams=diagrams):
 # Simulation
 def simu(simulationTimeLocal=simulationTime, mode='Initial', options=opts_std, \
          diagrams=diagrams,timeDiscreteStates=timeDiscreteStates):         
-   """Model loaded and given intial values and parameter before, and plot window also setup before."""
+   """Model loaded and given intial values and parameter before,
+      and plot window also setup before."""
     
    # Global variables
    global model, parDict, stateDict, prevFinalTime, simulationTime, sim_res, t
@@ -604,17 +605,17 @@ def simu(simulationTimeLocal=simulationTime, mode='Initial', options=opts_std, \
          for key in stateDict.keys():
             if not key[-1] == ']':
                if key[-3:] == 'I.y': 
-                  model.set(key[:-10]+'I_0', stateDict[key]) 
+                  model.set(key[:-10]+'I_start', stateDict[key]) 
                elif key[-3:] == 'D.x': 
-                  model.set(key[:-10]+'D_0', stateDict[key]) 
+                  model.set(key[:-10]+'D_start', stateDict[key]) 
                else:
-                  model.set(key+'_0', stateDict[key])
+                  model.set(key+'_start', stateDict[key])
             elif key[-3] == '[':
-               model.set(key[:-3]+'_0'+key[-3:], stateDict[key]) 
+               model.set(key[:-3]+'_start'+key[-3:], stateDict[key]) 
             elif key[-4] == '[':
-               model.set(key[:-4]+'_0'+key[-4:], stateDict[key]) 
+               model.set(key[:-4]+'_start'+key[-4:], stateDict[key]) 
             elif key[-5] == '[':
-               model.set(key[:-5]+'_0'+key[-5:], stateDict[key]) 
+               model.set(key[:-5]+'_start'+key[-5:], stateDict[key]) 
             else:
                print('The state vecotr has more than 1000 states')
                break
@@ -716,7 +717,7 @@ def describe_general(name, decimals):
             print(description, ':', value)     
       else:
          print(description, ':', np.round(value, decimals), '[',unit,']')
-
+         
 # Plot process diagram
 def process_diagram(fmu_model=fmu_model, fmu_process_diagram=fmu_process_diagram):   
    try:
