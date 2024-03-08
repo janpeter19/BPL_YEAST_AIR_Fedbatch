@@ -163,10 +163,10 @@ parDict['alpha_O2'] = 1.0
 
 parDict['feedtank_V_start'] = 50.0
 parDict['G_in'] = 500.0
-parDict['mu_feed'] = 0.10
 parDict['F_start'] = 0.0
-parDict['t_start'] = 3.0
-parDict['F_start'] = 0.00133
+parDict['mu_feed'] = 0.10
+parDict['t_startExp'] = 3.0
+parDict['F_startExp'] = 0.00133
 parDict['F_max'] = 0.3
 
 parDict['airFlow_setpoint'] = 120.0
@@ -202,10 +202,10 @@ parLocation['alpha_O2'] = 'bioreactor.gas_liquid_transfer.alpha_O2'
 
 parLocation['feedtank_V_start'] = 'feedtank.V_start'
 parLocation['G_in'] = 'feedtank.c_in[2]'
+parLocation['F_start'] = 'dosagescheme.F_start'
 parLocation['mu_feed'] = 'dosagescheme.mu_feed'
-parLocation['F_start'] = 'dosagescheme.F_start'
-parLocation['t_start'] = 'dosagescheme.t_start'
-parLocation['F_start'] = 'dosagescheme.F_start'
+parLocation['t_startExp'] = 'dosagescheme.t_startExp'
+parLocation['F_startExp'] = 'dosagescheme.F_startExp'
 parLocation['F_max'] = 'dosagescheme.F_max'
 
 parLocation['airFlow_setpoint'] = 'airFlow_setpoint.k'
