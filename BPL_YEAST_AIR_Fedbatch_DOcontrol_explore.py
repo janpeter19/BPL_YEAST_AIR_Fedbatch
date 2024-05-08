@@ -63,6 +63,7 @@
 # 2023-04-21 - Compiled for Ubuntu 20.04 and changed BPL_version
 # 2023-05-31 - Adjusted to from importlib.meetadata import version
 # 2024-01-22 - Update FMU-explore 0.9.9 icluding function process_diagram() although not used since no GUI gasphase
+# 2024-05-08 - Look through early part and call it all FMU-explore 1.0.0
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -77,8 +78,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as img
 import zipfile 
+
 from pyfmi import load_fmu
 from pyfmi.fmi import FMUException
+
 from itertools import cycle
 from importlib.metadata import version   
 
@@ -136,7 +139,7 @@ if flag_vendor in ['JM', 'jm']:
 elif flag_vendor in ['OM', 'om']:
    MSL_usage = '3.2.3 - used components: RealInput, RealOutput, LimPID-components' 
    MSL_version = '3.2.3'
-   BPL_version = 'Bioprocess Library version 2.1.2 prel' 
+   BPL_version = 'Bioprocess Library version 2.2.0' 
 else:    
    print('There is no FMU for this platform')
 
@@ -467,7 +470,7 @@ def describe(name, decimals=3):
 
 #------------------------------------------------------------------------------------------------------------------
 #  General code 
-FMU_explore = 'FMU-explore version 0.9.9'
+FMU_explore = 'FMU-explore version 1.0.0'
 #------------------------------------------------------------------------------------------------------------------
 
 # Define function par() for parameter update

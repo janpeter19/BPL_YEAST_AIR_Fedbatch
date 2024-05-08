@@ -18,6 +18,7 @@
 # 2023-05-31 - Adjusted to from importlib.meetadata import version
 # 2024-01-22 - Update FMU-explore 0.9.9 icluding function process_diagram() although not used since no GUI gasphase
 # 2024-03-08 - Update to finalize transition to FMU-explore 0.9.9
+# 2024-05-08 - Look through early part and call it all FMU-explore 1.0.0
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -92,7 +93,7 @@ if flag_vendor in ['JM', 'jm']:
 elif flag_vendor in ['OM', 'om']:
    MSL_usage = '3.2.3 - used components: RealInput, RealOutput, LimPID-components' 
    MSL_version = '3.2.3'
-   BPL_version = 'Bioprocess Library version 2.1.2 prel' 
+   BPL_version = 'Bioprocess Library version 2.2.0' 
 else:    
    print('There is no FMU for this platform')
 
