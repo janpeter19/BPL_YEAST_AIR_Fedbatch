@@ -19,6 +19,7 @@
 # 2024-01-22 - Update FMU-explore 0.9.9 icluding function process_diagram() although not used since no GUI gasphase
 # 2024-03-08 - Update to finalize transition to FMU-explore 0.9.9
 # 2024-05-08 - Look through early part and call it all FMU-explore 1.0.0
+# 2024-05-20 - Updated the OpenModelica version to 1.23.0-dev
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -56,14 +57,11 @@ if platform.system() == 'Windows':
    model_description = read_model_description(fmu_model)  
    flag_vendor = 'JM'
    flag_type = 'CS'
-elif platform.system() == 'Linux':
-#   flag_vendor = input('Linux - run FMU from JModelica (JM) or OpenModelica (OM)?')  
-#   flag_type = input('Linux - run FMU-CS (CS) or ME (ME)?')  
-#   print()   
+elif platform.system() == 'Linux':  
    flag_vendor = 'OM'
    flag_type = 'ME'
    if flag_vendor in ['OM','om']:
-      print('Linux - run FMU pre-comiled OpenModelica 1.21.0') 
+      print('Linux - run FMU pre-comiled OpenModelica 1.23.0-dev') 
       if flag_type in ['CS','cs']:         
          fmu_model ='BPL_YEAST_AIR_Fedbatch_DOcontrol_om_cs.fmu'    
          model_description = read_model_description(fmu_model) 
