@@ -21,6 +21,7 @@
 # 2024-05-08 - Look through early part and call it all FMU-explore 1.0.0
 # 2024-05-20 - Updated the OpenModelica version to 1.23.0-dev
 # 2024-06-01 - Corrected model_get() to handle string values as well - improvement very small and keep ver 1.0.0
+# 2024-07-03 - Updated with adjustments of names (connections to FixValue) due to new FMU with BPL 2.2.1 
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -92,7 +93,7 @@ if flag_vendor in ['JM', 'jm']:
 elif flag_vendor in ['OM', 'om']:
    MSL_usage = '3.2.3 - used components: RealInput, RealOutput, LimPID-components' 
    MSL_version = '3.2.3'
-   BPL_version = 'Bioprocess Library version 2.2.0' 
+   BPL_version = 'Bioprocess Library version 2.2.1 - GUI' 
 else:    
    print('There is no FMU for this platform')
 
@@ -208,17 +209,17 @@ parLocation['t_startExp'] = 'dosagescheme.t_startExp'
 parLocation['F_startExp'] = 'dosagescheme.F_startExp'
 parLocation['F_max'] = 'dosagescheme.F_max'
 
-parLocation['airFlow_setpoint'] = 'airFlow_setpoint.k'
+parLocation['airFlow_setpoint'] = 'airFlow_setpoint.val'
 
-parLocation['DO_setpoint'] = 'DO_setpoint.k'
+parLocation['DO_setpoint'] = 'DO_setpoint.val'
 parLocation['DO_sensor_x_start'] = 'DOsensor.x_start'
 parLocation['K'] = 'PIreg.K'
 parLocation['Ti'] = 'PIreg.Ti'
 parLocation['Td'] = 'PIreg.Td'
 parLocation['I_start'] = 'PIreg.I_start'
 parLocation['D_start'] = 'PIreg.D_start'
-parLocation['N_low'] = 'N_low.k'
-parLocation['N_high'] = 'N_high.k'
+parLocation['N_low'] = 'N_low.val'
+parLocation['N_high'] = 'N_high.val'
 
 # Extended list of parameters and variables only for describe and not change
 global key_variables; key_variables = []
@@ -242,7 +243,7 @@ parLocation['bioreactor.V_gas[2]'] = 'bioreactor.V_gas[2]'; key_variables.append
 parLocation['bioreactor.V_gas[3]'] = 'bioreactor.V_gas[3]'; key_variables.append(parLocation['bioreactor.V_gas[3]'])
 parLocation['bioreactor.V_gas[4]'] = 'bioreactor.V_gas[4]'; key_variables.append(parLocation['bioreactor.V_gas[4]'])
 
-parLocation['DO_setpoint.y'] = 'DO_setpoint.y'; key_variables.append(parLocation['DO_setpoint.y'])
+parLocation['DO_setpoint.out'] = 'DO_setpoint.out'; key_variables.append(parLocation['DO_setpoint.out'])
 parLocation['DOsensor.x'] = 'DOsensor.x'; key_variables.append(parLocation['DOsensor.x'])
 parLocation['PIreg.limPID.D.x'] = 'PIreg.limPID.D.x'; key_variables.append(parLocation['PIreg.limPID.D.x'])
 parLocation['PIreg.limPID.I.y'] = 'PIreg.limPID.I.y'; key_variables.append(parLocation['PIreg.limPID.I.y'])
@@ -342,7 +343,7 @@ def newplot(title='Yeast fedbatch cultivation', plotType='TimeSeries'):
       diagrams.append("ax21.plot(sim_res['time'],sim_res['bioreactor.c[3]'],color='b',linestyle=linetype)")
       diagrams.append("ax31.plot(sim_res['time'],sim_res['bioreactor.c[1]'],color='b',linestyle=linetype)")
       diagrams.append("ax41.plot(sim_res['time'],sim_res['DOsensor.out'],color='b',linestyle=linetype)")
-      diagrams.append("ax41.plot(sim_res['time'],sim_res['DO_setpoint.y'],color='y',linestyle='--')")
+      diagrams.append("ax41.plot(sim_res['time'],sim_res['DO_setpoint.out'],color='y',linestyle='--')")
       diagrams.append("ax51.step(sim_res['time'],sim_res['bioreactor.N'],color='c',linestyle=linetype)")
       diagrams.append("ax51.set_ylim([0,1700])")
       diagrams.append("ax61.plot(sim_res['time'],sim_res['bioreactor.inlet[1].F'],color='c',linestyle=linetype)")
@@ -385,7 +386,7 @@ def newplot(title='Yeast fedbatch cultivation', plotType='TimeSeries'):
       # List of commands to be executed by simu() after a simulation  
       diagrams.clear()
       diagrams.append("ax1.plot(sim_res['time'],sim_res['DOsensor.out'],color='b',linestyle=linetype)")
-      diagrams.append("ax1.plot(sim_res['time'],sim_res['DO_setpoint.y'],color='r',linestyle='--')")
+      diagrams.append("ax1.plot(sim_res['time'],sim_res['DO_setpoint.out'],color='r',linestyle='--')")
       diagrams.append("ax2.step(sim_res['time'],sim_res['bioreactor.N'],color='b',linestyle=linetype)")
       diagrams.append("ax2.set_ylim([0,2500])")
       diagrams.append("ax3.plot(sim_res['time'],sim_res['bioreactor.m[1]']*sim_res['bioreactor.culture.qO2'],color='b',linestyle=linetype)")
