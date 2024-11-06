@@ -111,7 +111,7 @@ timeDiscreteStates = {}
 component_list_minimum = ['bioreactor', 'bioreactor.culture', 'bioreactor.gas_liquid_transfer']
 
 # Provide process diagram on disk
-fmu_process_diagram ='BPL_TEST2_Fedbatch_process_diagram_om.png'
+fmu_process_diagram ='BPL_YEAST_AIR_Fedbatch_DOcontrol_process_diagram_om.png'
 
 #------------------------------------------------------------------------------------------------------------------
 #  Specific application constructs: stateDict, parDict, diagrams, newplot(), describe()
