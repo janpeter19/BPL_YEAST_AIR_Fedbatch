@@ -24,6 +24,7 @@
 # 2024-07-03 - Updated with adjustments of names (connections to FixValue) due to new FMU with BPL 2.2.1 
 # 2024-08-13 - Corrected model_get() to handle calculatedParameters - call it ver 1.0.1
 # 2024-10-13 - Updated information aboout BPL 2.2.2 - GUI
+# 2024-11-06 - Updated for BPL 2.3.0
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -95,7 +96,7 @@ if flag_vendor in ['JM', 'jm']:
 elif flag_vendor in ['OM', 'om']:
    MSL_usage = '3.2.3 - used components: RealInput, RealOutput, LimPID-components' 
    MSL_version = '3.2.3'
-   BPL_version = 'Bioprocess Library version 2.2.2 - GUI' 
+   BPL_version = 'Bioprocess Library version 2.3.0' 
 else:    
    print('There is no FMU for this platform')
 
@@ -110,7 +111,7 @@ timeDiscreteStates = {}
 component_list_minimum = ['bioreactor', 'bioreactor.culture', 'bioreactor.gas_liquid_transfer']
 
 # Provide process diagram on disk
-fmu_process_diagram ='BPL_GUI_TEST2_Fedbatch_process_diagram_om.png'
+fmu_process_diagram ='BPL_TEST2_Fedbatch_process_diagram_om.png'
 
 #------------------------------------------------------------------------------------------------------------------
 #  Specific application constructs: stateDict, parDict, diagrams, newplot(), describe()
@@ -211,17 +212,17 @@ parLocation['t_startExp'] = 'dosagescheme.t_startExp'
 parLocation['F_startExp'] = 'dosagescheme.F_startExp'
 parLocation['F_max'] = 'dosagescheme.F_max'
 
-parLocation['airFlow_setpoint'] = 'airFlow_setpoint.val'
+parLocation['airFlow_setpoint'] = 'airFlow_setpoint.value'
 
-parLocation['DO_setpoint'] = 'DO_setpoint.val'
+parLocation['DO_setpoint'] = 'DO_setpoint.value'
 parLocation['DO_sensor_x_start'] = 'DOsensor.x_start'
 parLocation['K'] = 'PIreg.K'
 parLocation['Ti'] = 'PIreg.Ti'
 parLocation['Td'] = 'PIreg.Td'
 parLocation['I_start'] = 'PIreg.I_start'
 parLocation['D_start'] = 'PIreg.D_start'
-parLocation['N_low'] = 'N_low.val'
-parLocation['N_high'] = 'N_high.val'
+parLocation['N_low'] = 'N_low.value'
+parLocation['N_high'] = 'N_high.value'
 
 # Extended list of parameters and variables only for describe and not change
 global key_variables; key_variables = []

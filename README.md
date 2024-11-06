@@ -25,7 +25,7 @@ The subsequent execution of the simulations of microbial growth take just a seco
 
 You can continue in the notebook and make new simulations and follow the examples given. Here are many things to explore!
 
-See also the related repositories: BPL_TEST2_Fedbatch and BPL_CHO_Fedbatch.
+See also the related repositories: BPL\_TEST2\_Fedbatch and BPL\_CHO\_Fedbatch.
 
 Note that:
 * The script occassionaly get stuck during installation. Then just close the notebook and start from scratch.
