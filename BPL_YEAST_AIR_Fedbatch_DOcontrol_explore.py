@@ -68,6 +68,7 @@
 # 2024-07-03 - Updated with adjustments of names (connections to FixValue) due to new FMU with BPL 2.2.1
 # 2024-10-13 - Updated information aboout BPL 2.2.2 - GUI
 # 2024-11-06 - Updated for BPL 2.3.0
+# 2025-02-14 - Change from qO2lim to qO2max and use KsO2 and also introduce VO2_start and VCO2_start
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -172,17 +173,18 @@ parDict['V_start'] = 4.5
 parDict['VX_start'] = 4.5*1.0
 parDict['VG_start'] = 4.5*5.0
 parDict['VE_start'] = 0.0
+parDict['V_diss_O2_start'] = 0.0067
+parDict['V_diss_CO2_start'] = 1.25
 
 parDict['V_tot'] = 8.0
-parDict['V_diss_O2_start'] = 0
-parDict['V_diss_CO2_start'] = 0
 parDict['V_gas_N2_start'] = 2.4
 parDict['V_gas_O2_start'] = 0.6
 parDict['V_gas_CO2_start'] = 0
 
 parDict['qGmax'] = 20.0e-3
 parDict['Ks'] = 10.0e-3
-parDict['qO2lim'] = 6.9e-3
+parDict['qO2max'] = 6.9e-3
+parDict['KsO2'] = 1.0e-5
 
 parDict['alpha_O2'] = 1.0
 
@@ -213,17 +215,18 @@ parLocation['V_start'] = 'bioreactor.V_start'
 parLocation['VX_start'] = 'bioreactor.m_start[1]' 
 parLocation['VG_start'] = 'bioreactor.m_start[2]' 
 parLocation['VE_start'] = 'bioreactor.m_start[3]' 
-
-parLocation['V_tot'] = 'bioreactor.V_tot'
 parLocation['V_diss_O2_start'] = 'bioreactor.m_start[4]'
 parLocation['V_diss_CO2_start'] = 'bioreactor.m_start[5]'
+
+parLocation['V_tot'] = 'bioreactor.V_tot'
 parLocation['V_gas_N2_start'] = 'bioreactor.V_gas_start[1]'
 parLocation['V_gas_O2_start'] = 'bioreactor.V_gas_start[2]'
 parLocation['V_gas_CO2_start'] = 'bioreactor.V_gas_start[3]'
 
 parLocation['qGmax'] = 'bioreactor.culture.qGmax' 
 parLocation['Ks'] = 'bioreactor.culture.Ks' 
-parLocation['qO2lim'] = 'bioreactor.culture.qO2lim' 
+parLocation['qO2max'] = 'bioreactor.culture.qO2max' 
+parLocation['KsO2'] = 'bioreactor.culture.KsO2'
 
 parLocation['alpha_O2'] = 'bioreactor.gas_liquid_transfer.alpha_O2'
 
