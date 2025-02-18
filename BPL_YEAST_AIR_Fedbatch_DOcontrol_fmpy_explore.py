@@ -231,6 +231,7 @@ parLocation['N_high'] = 'N_high.value'
 global key_variables; key_variables = []
 parLocation['mu'] = 'bioreactor.culture.mu'; key_variables.append(parLocation['mu'])
 parLocation['qO2'] = 'bioreactor.culture.qO2'; key_variables.append(parLocation['qO2'])
+parLocation['qO2lim'] = 'bioreactor.culture.qO2lim'; key_variables.append(parLocation['qO2lim'])
 
 parLocation['Kla_O2'] = 'bioreactor.gas_liquid_transfer.Kla_O2'; key_variables.append(parLocation['Kla_O2'])
 parLocation['Kla_CO2'] = 'bioreactor.gas_liquid_transfer.Kla_CO2'; key_variables.append(parLocation['Kla_CO2'])

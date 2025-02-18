@@ -256,6 +256,7 @@ parLocation['N_high'] = 'N_high.value'
 parLocation['mu'] = 'bioreactor.culture.mu'
 parLocation['Kla_O2'] = 'bioreactor.gas_liquid_transfer.Kla_O2'
 parLocation['Kla_CO2'] = 'bioreactor.gas_liquid_transfer.Kla_CO2'
+parLocation['qO2lim'] = 'bioreactor.culture.qO2lim'
 
 # Parameter value check - especially for hysteresis to avoid runtime error
 global parCheck; parCheck = []
