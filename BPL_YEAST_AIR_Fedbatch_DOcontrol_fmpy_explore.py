@@ -67,7 +67,7 @@ elif platform.system() == 'Linux':
    flag_vendor = 'OM'
    flag_type = 'ME'
    if flag_vendor in ['OM','om']:
-      print('Linux - run FMU pre-comiled OpenModelica') 
+      print('Linux - run FMU pre-compiled OpenModelica') 
       if flag_type in ['CS','cs']:         
          fmu_model ='BPL_YEAST_AIR_Fedbatch_DOcontrol_om_cs.fmu'    
          model_description = read_model_description(fmu_model) 
