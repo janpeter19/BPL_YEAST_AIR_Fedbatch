@@ -26,6 +26,7 @@
 # 2024-10-13 - Updated information aboout BPL 2.2.2 - GUI
 # 2024-11-06 - Updated for BPL 2.3.0
 # 2025-02-14 - Change from qO2lim to qO2max and use KsO2 and also introduce VO2_start and VCO2_start
+# 2025-06-28 - Updated for BPL 2.3.1 Linux MSL 4.1.0
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -95,9 +96,9 @@ if flag_vendor in ['JM', 'jm']:
    BPL_version = [x[1] for x in [(constants[k].name, constants[k].start) \
                        for k in range(len(constants))] if 'BPL.version' in x[0]][0] 
 elif flag_vendor in ['OM', 'om']:
-   MSL_usage = '3.2.3 - used components: RealInput, RealOutput, LimPID-components' 
-   MSL_version = '3.2.3'
-   BPL_version = 'Bioprocess Library version 2.3.0' 
+   MSL_usage = '4.1.0 - used components: RealInput, RealOutput, LimPID-components' 
+   MSL_version = '4.1.0'
+   BPL_version = 'Bioprocess Library version 2.3.1' 
 else:    
    print('There is no FMU for this platform')
 
