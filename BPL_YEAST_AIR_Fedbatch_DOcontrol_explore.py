@@ -69,7 +69,7 @@
 # 2024-10-13 - Updated information aboout BPL 2.2.2 - GUI
 # 2024-11-06 - Updated for BPL 2.3.0
 # 2025-02-14 - Change from qO2lim to qO2max and use KsO2 and also introduce VO2_start and VCO2_start
-# 2025-06-28 - Updated for BPL 2.3.1 Linux MSL 4.1.0
+# 2025-06-28 - Updated for BPL 2.3.1 Linux MSL 4.1.0 and bring back parameters Td and D_start
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -205,9 +205,9 @@ parDict['DO_sensor_x_start'] = 87.0
 #parDict['samplePeriod'] = 0.1
 parDict['K'] = 10.0
 parDict['Ti'] = 0.5
-#parDict['Td'] = 0.0
+parDict['Td'] = 0.0
 parDict['I_start'] = 0
-#parDict['D_start'] = 0
+parDict['D_start'] = 0
 parDict['N_low'] = 500
 parDict['N_high'] = 2000
 
@@ -247,9 +247,9 @@ parLocation['DO_sensor_x_start'] = 'DOsensor.x_start'
 #parLocation['samplePeriod'] = 'PIreg.samplePeriod'
 parLocation['K'] = 'PIreg.K'
 parLocation['Ti'] = 'PIreg.Ti'
-#parLocation['Td'] = 'PIreg.Td'
+parLocation['Td'] = 'PIreg.Td'
 parLocation['I_start'] = 'PIreg.I_start'
-#parLocation['D_start'] = 'PIreg.D_start'
+parLocation['D_start'] = 'PIreg.D_start'
 parLocation['N_low'] = 'N_low.value'
 parLocation['N_high'] = 'N_high.value'
 
