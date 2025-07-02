@@ -70,6 +70,7 @@
 # 2024-11-06 - Updated for BPL 2.3.0
 # 2025-02-14 - Change from qO2lim to qO2max and use KsO2 and also introduce VO2_start and VCO2_start
 # 2025-06-28 - Updated for BPL 2.3.1 Linux MSL 4.1.0 and bring back parameters Td and D_start
+# 2025-07-02 - Change PIreg to PIDreg
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -243,13 +244,13 @@ parLocation['airFlow_setpoint'] = 'airFlow_setpoint.value'
 
 parLocation['DO_setpoint'] = 'DO_setpoint.value'
 parLocation['DO_sensor_x_start'] = 'DOsensor.x_start'
-#parLocation['t_regStart'] = 'PIreg.t_regStart'
-#parLocation['samplePeriod'] = 'PIreg.samplePeriod'
-parLocation['K'] = 'PIreg.K'
-parLocation['Ti'] = 'PIreg.Ti'
-parLocation['Td'] = 'PIreg.Td'
-parLocation['I_start'] = 'PIreg.I_start'
-parLocation['D_start'] = 'PIreg.D_start'
+#parLocation['t_regStart'] = 'PIDreg.t_regStart'
+#parLocation['samplePeriod'] = 'PIDreg.samplePeriod'
+parLocation['K'] = 'PIDreg.K'
+parLocation['Ti'] = 'PIDreg.Ti'
+parLocation['Td'] = 'PIDreg.Td'
+parLocation['I_start'] = 'PIDreg.I_start'
+parLocation['D_start'] = 'PIDreg.D_start'
 parLocation['N_low'] = 'N_low.value'
 parLocation['N_high'] = 'N_high.value'
 

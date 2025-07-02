@@ -220,11 +220,11 @@ parLocation['airFlow_setpoint'] = 'airFlow_setpoint.value'
 
 parLocation['DO_setpoint'] = 'DO_setpoint.value'
 parLocation['DO_sensor_x_start'] = 'DOsensor.x_start'
-parLocation['K'] = 'PIreg.K'
-parLocation['Ti'] = 'PIreg.Ti'
-parLocation['Td'] = 'PIreg.Td'
-parLocation['I_start'] = 'PIreg.I_start'
-parLocation['D_start'] = 'PIreg.D_start'
+parLocation['K'] = 'PIDreg.K'
+parLocation['Ti'] = 'PIDreg.Ti'
+parLocation['Td'] = 'PIDreg.Td'
+parLocation['I_start'] = 'PIDreg.I_start'
+parLocation['D_start'] = 'PIDreg.D_start'
 parLocation['N_low'] = 'N_low.value'
 parLocation['N_high'] = 'N_high.value'
 
@@ -253,8 +253,8 @@ parLocation['bioreactor.V_gas[4]'] = 'bioreactor.V_gas[4]'; key_variables.append
 
 parLocation['DO_setpoint.out'] = 'DO_setpoint.out'; key_variables.append(parLocation['DO_setpoint.out'])
 parLocation['DOsensor.x'] = 'DOsensor.x'; key_variables.append(parLocation['DOsensor.x'])
-parLocation['PIreg.limPID.D.x'] = 'PIreg.limPID.D.x'; key_variables.append(parLocation['PIreg.limPID.D.x'])
-parLocation['PIreg.limPID.I.y'] = 'PIreg.limPID.I.y'; key_variables.append(parLocation['PIreg.limPID.I.y'])
+parLocation['PIDreg.limPID.D.x'] = 'PIDreg.limPID.D.x'; key_variables.append(parLocation['PIDreg.limPID.D.x'])
+parLocation['PIDreg.limPID.I.y'] = 'PIDreg.limPID.I.y'; key_variables.append(parLocation['PIDreg.limPID.I.y'])
 
 parLocation['airtube.V'] = 'airtube.V'; key_variables.append(parLocation['airtube.V'])
 parLocation['atmosphere.V'] = 'atmosphere.V'; key_variables.append(parLocation['atmosphere.V'])
