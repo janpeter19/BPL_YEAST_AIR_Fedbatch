@@ -72,6 +72,7 @@
 # 2025-06-28 - Updated for BPL 2.3.1 Linux MSL 4.1.0 and bring back parameters Td and D_start
 # 2025-07-02 - Change PIreg to PIDreg
 # 2025-07-19 - Include Td and N only for OM generated FMUs
+# 2025-08-11 - Updted for BPL 2.3.2 - prel - now PID and Td tuning works also in Windows
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -207,9 +208,10 @@ parDict['DO_sensor_x_start'] = 87.0
 #parDict['samplePeriod'] = 0.1
 parDict['K'] = 10.0
 parDict['Ti'] = 0.5
-if flag_vendor in ['OM', 'om']: parDict['Td'] = 0.0
+parDict['Td'] = 0.0
+parDict['Nd'] = 3.0
 parDict['I_start'] = 0
-if flag_vendor in ['OM', 'om']: parDict['D_start'] = 0.0
+parDict['D_start'] = 0.0
 parDict['N_low'] = 500
 parDict['N_high'] = 2000
 
@@ -249,9 +251,10 @@ parLocation['DO_sensor_x_start'] = 'DOsensor.x_start'
 #parLocation['samplePeriod'] = 'PIDreg.samplePeriod'
 parLocation['K'] = 'PIDreg.K'
 parLocation['Ti'] = 'PIDreg.Ti'
-if flag_vendor in ['OM', 'om']: parLocation['Td'] = 'PIDreg.Td'
+parLocation['Td'] = 'PIDreg.Td'
+parLocation['Nd'] = 'PIDreg.N'
 parLocation['I_start'] = 'PIDreg.I_start'
-if flag_vendor in ['OM', 'om']: parLocation['D_start'] = 'PIDreg.D_start'
+parLocation['D_start'] = 'PIDreg.D_start'
 parLocation['N_low'] = 'N_low.value'
 parLocation['N_high'] = 'N_high.value'
 
