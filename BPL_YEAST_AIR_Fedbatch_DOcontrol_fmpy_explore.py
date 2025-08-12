@@ -29,6 +29,7 @@
 # 2025-06-28 - Updated for BPL 2.3.1 Linux MSL 4.1.0
 # 2025-07-19 - Include Td and N only for OM generated FMUs
 # 2025-08-11 - Updted for BPL 2.3.2 - prel - now PID and Td tuning works also in Windows
+# 2025-08-12 - Changed N to Nd
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -226,7 +227,7 @@ parLocation['DO_sensor_x_start'] = 'DOsensor.x_start'
 parLocation['K'] = 'PIDreg.K'
 parLocation['Ti'] = 'PIDreg.Ti'
 parLocation['Td'] = 'PIDreg.Td'
-parLocation['Nd'] = 'PIDreg.N'
+parLocation['Nd'] = 'PIDreg.Nd'
 parLocation['I_start'] = 'PIDreg.I_start'
 parLocation['D_start'] = 'PIDreg.D_start'
 parLocation['N_low'] = 'N_low.value'

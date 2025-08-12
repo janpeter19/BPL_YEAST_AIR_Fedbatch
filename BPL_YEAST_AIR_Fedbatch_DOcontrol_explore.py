@@ -73,6 +73,7 @@
 # 2025-07-02 - Change PIreg to PIDreg
 # 2025-07-19 - Include Td and N only for OM generated FMUs
 # 2025-08-11 - Updted for BPL 2.3.2 - prel - now PID and Td tuning works also in Windows
+# 2025-08-12 - Changed N to Nd
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -145,7 +146,7 @@ if flag_vendor in ['JM', 'jm']:
 elif flag_vendor in ['OM', 'om']:
    MSL_usage = '4.1.0 - used components: RealInput, RealOutput, LimPID-components' 
    MSL_version = '4.1.0'
-   BPL_version = 'Bioprocess Library version 2.3.1' 
+   BPL_version = 'Bioprocess Library version 2.3.2 - prel' 
 else:    
    print('There is no FMU for this platform')
 
@@ -252,7 +253,7 @@ parLocation['DO_sensor_x_start'] = 'DOsensor.x_start'
 parLocation['K'] = 'PIDreg.K'
 parLocation['Ti'] = 'PIDreg.Ti'
 parLocation['Td'] = 'PIDreg.Td'
-parLocation['Nd'] = 'PIDreg.N'
+parLocation['Nd'] = 'PIDreg.Nd'
 parLocation['I_start'] = 'PIDreg.I_start'
 parLocation['D_start'] = 'PIDreg.D_start'
 parLocation['N_low'] = 'N_low.value'
