@@ -101,7 +101,7 @@ if flag_vendor in ['JM', 'jm']:
 elif flag_vendor in ['OM', 'om']:
    MSL_usage = '4.1.0 - used components: RealInput, RealOutput, LimPID-components' 
    MSL_version = '4.1.0'
-   BPL_version = 'Bioprocess Library version 2.3.1' 
+   BPL_version = 'Bioprocess Library version 2.3.2 - prel' 
 else:    
    print('There is no FMU for this platform')
 
