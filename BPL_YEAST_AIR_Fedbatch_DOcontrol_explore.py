@@ -74,6 +74,7 @@
 # 2025-07-19 - Include Td and N only for OM generated FMUs
 # 2025-08-11 - Updted for BPL 2.3.2 - prel - now PID and Td tuning works also in Windows
 # 2025-08-12 - Changed N to Nd
+# 2025-11-07 - FMU-explore 1.0.2
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -103,7 +104,7 @@ if platform.system() == 'Linux': locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 #------------------------------------------------------------------------------------------------------------------
 
 # Provde the right FMU and load for different platforms in user dialogue:
-global fmu_model, model
+global model
 if platform.system() == 'Windows':
    print('Windows - run FMU pre-compiled JModelica 2.14')
    flag_vendor = 'JM'
@@ -164,59 +165,59 @@ component_list_minimum = ['bioreactor', 'bioreactor.culture', 'bioreactor.gas_li
 fmu_process_diagram ='BPL_YEAST_AIR_Fedbatch_DOcontrol_process_diagram_om.png'
 
 #------------------------------------------------------------------------------------------------------------------
-#  Specific application constructs: stateDict, parDict, diagrams, newplot(), describe()
+#  Specific application constructs: stateDict, parValue, parLocation, parCheck, diagrams, newplot(), describe()
 #------------------------------------------------------------------------------------------------------------------
 
 # Create stateDict that later will be used to store final state and used for initialization in 'cont':
-global stateDict; stateDict =  {}
+stateDict =  {}
 stateDict = model.get_states_list()
 stateDict.update(timeDiscreteStates)
 
-# Create dictionaries parDictLocation[] and parLocation[]
-global parDict; parDict = {}
-parDict['V_start'] = 4.5
-parDict['VX_start'] = 4.5*1.0
-parDict['VG_start'] = 4.5*5.0
-parDict['VE_start'] = 0.0
-parDict['V_diss_O2_start'] = 0.0067
-parDict['V_diss_CO2_start'] = 1.25
+# Create dictionaries parValue[] and parLocation[]
+parValue = {}
+parValue['V_start'] = 4.5
+parValue['VX_start'] = 4.5*1.0
+parValue['VG_start'] = 4.5*5.0
+parValue['VE_start'] = 0.0
+parValue['V_diss_O2_start'] = 0.0067
+parValue['V_diss_CO2_start'] = 1.25
 
-parDict['V_tot'] = 8.0
-parDict['V_gas_N2_start'] = 2.4
-parDict['V_gas_O2_start'] = 0.6
-parDict['V_gas_CO2_start'] = 0
+parValue['V_tot'] = 8.0
+parValue['V_gas_N2_start'] = 2.4
+parValue['V_gas_O2_start'] = 0.6
+parValue['V_gas_CO2_start'] = 0
 
-parDict['qGmax'] = 20.0e-3
-parDict['Ks'] = 10.0e-3
-parDict['qO2max'] = 6.9e-3
-parDict['KsO2'] = 1.0e-5
+parValue['qGmax'] = 20.0e-3
+parValue['Ks'] = 10.0e-3
+parValue['qO2max'] = 6.9e-3
+parValue['KsO2'] = 1.0e-5
 
-parDict['alpha_O2'] = 1.0
+parValue['alpha_O2'] = 1.0
 
-parDict['feedtank_V_start'] = 50.0
-parDict['G_in'] = 500.0
-parDict['F_start'] = 0.0
-parDict['mu_feed'] = 0.10
-parDict['t_startExp'] = 3.0
-parDict['F_startExp'] = 0.00133
-parDict['F_max'] = 0.3
+parValue['feedtank_V_start'] = 50.0
+parValue['G_in'] = 500.0
+parValue['F_start'] = 0.0
+parValue['mu_feed'] = 0.10
+parValue['t_startExp'] = 3.0
+parValue['F_startExp'] = 0.00133
+parValue['F_max'] = 0.3
 
-parDict['airFlow_setpoint'] = 120.0
+parValue['airFlow_setpoint'] = 120.0
 
-parDict['DO_setpoint'] = 40.0
-parDict['DO_sensor_x_start'] = 87.0
-#parDict['t_regStart'] = 0.0
-#parDict['samplePeriod'] = 0.1
-parDict['K'] = 10.0
-parDict['Ti'] = 0.5
-parDict['Td'] = 0.0
-parDict['Nd'] = 3.0
-parDict['I_start'] = 0
-parDict['D_start'] = 0.0
-parDict['N_low'] = 500
-parDict['N_high'] = 2000
+parValue['DO_setpoint'] = 40.0
+parValue['DO_sensor_x_start'] = 87.0
+#parValue['t_regStart'] = 0.0
+#parValue['samplePeriod'] = 0.1
+parValue['K'] = 10.0
+parValue['Ti'] = 0.5
+parValue['Td'] = 0.0
+parValue['Nd'] = 3.0
+parValue['I_start'] = 0
+parValue['D_start'] = 0.0
+parValue['N_low'] = 500
+parValue['N_high'] = 2000
 
-global parLocation; parLocation = {}
+parLocation = {}
 parLocation['V_start'] = 'bioreactor.V_start'
 parLocation['VX_start'] = 'bioreactor.m_start[1]' 
 parLocation['VG_start'] = 'bioreactor.m_start[2]' 
@@ -266,10 +267,10 @@ parLocation['Kla_CO2'] = 'bioreactor.gas_liquid_transfer.Kla_CO2'
 parLocation['qO2lim'] = 'bioreactor.culture.qO2lim'
 
 # Parameter value check - especially for hysteresis to avoid runtime error
-global parCheck; parCheck = []
-parCheck.append("parDict['V_start'] > 0")
-parCheck.append("parDict['VX_start'] >= 0")
-parCheck.append("parDict['VG_start'] >= 0")
+parCheck = []
+parCheck.append("parValue['V_start'] > 0")
+parCheck.append("parValue['VX_start'] >= 0")
+parCheck.append("parValue['VG_start'] >= 0")
 
 # Create list of diagrams to be plotted by simu()
 global diagrams
@@ -482,20 +483,20 @@ def describe(name, decimals=3):
 
 #------------------------------------------------------------------------------------------------------------------
 #  General code 
-FMU_explore = 'FMU-explore version 1.0.0'
+FMU_explore = 'FMU-explore version 1.0.2'
 #------------------------------------------------------------------------------------------------------------------
 
 # Define function par() for parameter update
-def par(parDict=parDict, parCheck=parCheck, parLocation=parLocation, *x, **x_kwarg):
-   """ Set parameter values if available in the predefined dictionaryt parDict. """
+def par(*x, parValue=parValue, parCheck=parCheck, parLocation=parLocation, **x_kwarg):
+   """ Set parameter values if available in the predefined dictionaryt parValue. """
    x_kwarg.update(*x)
    x_temp = {}
    for key in x_kwarg.keys():
-      if key in parDict.keys():
+      if key in parValue.keys():
          x_temp.update({key: x_kwarg[key]})
       else:
          print('Error:', key, '- seems not an accessible parameter - check the spelling')
-   parDict.update(x_temp)
+   parValue.update(x_temp)
    
    parErrors = [requirement for requirement in parCheck if not(eval(requirement))]
    if not parErrors == []:
@@ -503,7 +504,7 @@ def par(parDict=parDict, parCheck=parCheck, parLocation=parLocation, *x, **x_kwa
       for index, item in enumerate(parErrors): print(item)
 
 # Define function init() for initial values update
-def init(parDict=parDict, *x, **x_kwarg):
+def init(*x, parValue=parValue, **x_kwarg):
    """ Set initial values and the name should contain string '_start' to be accepted.
        The function can handle general parameter string location names if entered as a dictionary. """
    x_kwarg.update(*x)
@@ -513,21 +514,43 @@ def init(parDict=parDict, *x, **x_kwarg):
          x_init.update({key: x_kwarg[key]})
       else:
          print('Error:', key, '- seems not an initial value, use par() instead - check the spelling')
-   parDict.update(x_init)
+   parValue.update(x_init)
+
+# Define how to read dictionary for parameter values
+def readParValue(file, sheet, parValue=parValue):
+   """ Read parameter short names and values from an Excel-file from defined sheet. For use in the notebook!
+       Return a dictionary."""
+   parValue_local = {} 
+   table = pd.ExcelFile(file).parse(sheet)
+   for k in list(range(len(table))):
+      parValue_local[table['Par'][k]] = table['Value'][k]
+   parValue.update(parValue_local)
+
+# Define how to read dictionary for parameter location
+def readParLocation(file, parLocation=parLocation):
+   """ Read parameter short and long names from an Excel-file sheet by sheet. For use in the notebook!
+       Return a dictionary."""
+   sheets = ['initial_values','feed_AB', 'feed_G', 'culture', 'broth_decay']
+   parLocation_local = {}
+   for sheet in sheets:
+      table = pd.ExcelFile(file).parse(sheet)
+      for k in list(range(len(table))):
+         parLocation_local[table['Par'][k]] = table['Location'][k]
+   parLocation.update(parLocation_local)
    
 # Define function disp() for display of initial values and parameters
 def dict_reverser(d):
    seen = set()
    return {v: k for k, v in d.items() if v not in seen or seen.add(v)}
    
-def disp(name='', decimals=3, mode='short'):
+def disp(name='', decimals=3, mode='short', parValue=parValue, parLocation=parLocation):
    """ Display intial values and parameters in the model that include "name" and is in parLocation list.
        Note, it does not take the value from the dictionary par but from the model. """
-   global parLocation, model
+   global model
    
    if mode in ['short']:
       k = 0
-      for Location in [parLocation[k] for k in parDict.keys()]:
+      for Location in [parLocation[k] for k in parValue.keys()]:
          if name in Location:
             if type(model.get(Location)[0]) != np.bool_:
                print(dict_reverser(parLocation)[Location] , ':', np.round(model.get(Location)[0],decimals))
@@ -536,7 +559,7 @@ def disp(name='', decimals=3, mode='short'):
          else:
             k = k+1
       if k == len(parLocation):
-         for parName in parDict.keys():
+         for parName in parValue.keys():
             if name in parName:
                if type(model.get(Location)[0]) != np.bool_:
                   print(parName,':', np.round(model.get(parLocation[parName])[0],decimals))
@@ -544,14 +567,14 @@ def disp(name='', decimals=3, mode='short'):
                   print(parName,':', model.get(parLocation[parName])[0])
    if mode in ['long','location']:
       k = 0
-      for Location in [parLocation[k] for k in parDict.keys()]:
+      for Location in [parLocation[k] for k in parValue.keys()]:
          if name in Location:
             if type(model.get(Location)[0]) != np.bool_:       
                print(Location,':', dict_reverser(parLocation)[Location] , ':', np.round(model.get(Location)[0],decimals))
          else:
             k = k+1
       if k == len(parLocation):
-         for parName in parDict.keys():
+         for parName in parValue.keys():
             if name in parName:
                if type(model.get(Location)[0]) != np.bool_:
                   print(parLocation[parName], ':', dict_reverser(parLocation)[Location], ':', parName,':', 
@@ -573,12 +596,13 @@ def show(diagrams=diagrams):
 
 # Simulation
 def simu(simulationTimeLocal=simulationTime, mode='Initial', options=opts_std, \
-         diagrams=diagrams,timeDiscreteStates=timeDiscreteStates):         
+         diagrams=diagrams,timeDiscreteStates=timeDiscreteStates, stateDict=stateDict, \
+         parValue=parValue, parLocation=parLocation, fmu_model=fmu_model):         
    """Model loaded and given intial values and parameter before,
       and plot window also setup before."""
     
    # Global variables
-   global model, parDict, stateDict, prevFinalTime, simulationTime, sim_res, t
+   global model, prevFinalTime, simulationTime, sim_res, t
    
    # Simulation flag
    simulationDone = False
@@ -586,10 +610,10 @@ def simu(simulationTimeLocal=simulationTime, mode='Initial', options=opts_std, \
    # Transfer of argument to global variable
    simulationTime = simulationTimeLocal 
       
-   # Check parDict
+   # Check parValue
    value_missing = 0
-   for key in parDict.keys():
-      if parDict[key] in [np.nan, None, '']:
+   for key in parValue.keys():
+      if parValue[key] in [np.nan, None, '']:
          print('Value missing:', key)
          value_missing =+1
    if value_missing>0: return
@@ -602,8 +626,8 @@ def simu(simulationTimeLocal=simulationTime, mode='Initial', options=opts_std, \
    # Run simulation
    if mode in ['Initial', 'initial', 'init']:
       # Set parameters and intial state values:
-      for key in parDict.keys():
-         model.set(parLocation[key],parDict[key])   
+      for key in parValue.keys():
+         model.set(parLocation[key],parValue[key])   
       # Simulate
       sim_res = model.simulate(final_time=simulationTime, options=options)  
       simulationDone = True
@@ -614,8 +638,8 @@ def simu(simulationTimeLocal=simulationTime, mode='Initial', options=opts_std, \
       else:
          
          # Set parameters and intial state values:
-         for key in parDict.keys():
-            model.set(parLocation[key],parDict[key])                
+         for key in parValue.keys():
+            model.set(parLocation[key],parValue[key])                
 
          for key in stateDict.keys():
             if not key[-1] == ']':
@@ -696,7 +720,7 @@ def describe_MSL(flag_vendor=flag_vendor):
    print('MSL:', MSL_usage)
  
 # Describe parameters and variables in the Modelica code
-def describe_general(name, decimals):
+def describe_general(name, decimals, parLocation=parLocation):
   
    if name == 'time':
       description = 'Time'
