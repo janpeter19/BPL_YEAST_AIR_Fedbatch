@@ -866,6 +866,15 @@ def system_info():
    print(' -MSL:', MSL_version)    
    print(' -Description:', BPL_version)   
    print(' -Interaction:', FMU_explore)
+   
+def SDG(explanation=False):
+  if explanation:
+    print('"Soli Deo Gloria"')
+    print(' It is latin and means "To the honour of God".') 
+    print(' The great composer Johan Sebastian Bach used to end his compositions with this small remark SDG.')
+    print(' And I like to do that too :).')    
+   
+
 
 #------------------------------------------------------------------------------------------------------------------
 #  Startup
