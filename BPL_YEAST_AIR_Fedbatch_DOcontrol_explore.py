@@ -78,6 +78,7 @@
 # 2025-11-13 - Global declaration removed outside functions
 # 2025-11-14 - FMU-explore 1.0.2 corrected
 # 2025-11-19 - FMU-explore 1.0.2 corrected again parLocation() with sheets as argument
+# 2026-03-25 - FMU-explore 1.0.3
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -484,7 +485,7 @@ def describe(name, decimals=3):
 
 #------------------------------------------------------------------------------------------------------------------
 #  General code 
-FMU_explore = 'FMU-explore version 1.0.2'
+FMU_explore = 'FMU-explore version 1.0.3'
 #------------------------------------------------------------------------------------------------------------------
 
 # Define function par() for parameter update
@@ -725,6 +726,9 @@ def describe_general(name, decimals, parLocation=parLocation):
       description = 'Time'
       unit = 'h'
       print(description,'[',unit,']')
+
+   elif name == 'process':
+      print(model.get_description())     
       
    elif name in parLocation.keys():
       description = model.get_variable_description(parLocation[name])
