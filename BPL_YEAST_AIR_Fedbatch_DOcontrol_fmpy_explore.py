@@ -480,7 +480,7 @@ def describe(name, decimals=3):
 
 #------------------------------------------------------------------------------------------------------------------
 #  General code 
-FMU_explore = 'FMU-explore for FMPy version 1.0.2'
+FMU_explore = 'FMU-explore for FMPy version 1.0.3'
 #------------------------------------------------------------------------------------------------------------------
 
 # Define function par() for parameter update
@@ -773,6 +773,9 @@ def describe_general(name, decimals, parLocation=parLocation):
       description = 'Time'
       unit = 'h'
       print(description,'[',unit,']')
+      
+   elif name == 'process':
+      print(read_model_description(fmu_model).description)      
       
    elif name in parLocation.keys():
       description = model_get_variable_description(parLocation[name])
