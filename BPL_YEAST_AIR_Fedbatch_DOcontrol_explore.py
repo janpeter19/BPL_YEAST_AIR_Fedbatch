@@ -79,6 +79,7 @@
 # 2025-11-14 - FMU-explore 1.0.2 corrected
 # 2025-11-19 - FMU-explore 1.0.2 corrected again parLocation() with sheets as argument
 # 2026-03-25 - FMU-explore 1.0.3
+# 2026-04-09 - Update for BPL 2.3.2
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -150,7 +151,7 @@ if flag_vendor in ['JM', 'jm']:
 elif flag_vendor in ['OM', 'om']:
    MSL_usage = '4.1.0 - used components: RealInput, RealOutput, LimPID-components' 
    MSL_version = '4.1.0'
-   BPL_version = 'Bioprocess Library version 2.3.2 - prel' 
+   BPL_version = 'Bioprocess Library version 2.3.2' 
 else:    
    print('There is no FMU for this platform')
 
