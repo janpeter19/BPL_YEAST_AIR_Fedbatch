@@ -1,8 +1,9 @@
-# setup data YEAST_AIR_Fedbatch_fmpy 
+# Setup data YEAST_AIR_Fedbatch_fmpy 
 # Author: Jan Peter Axelsson
 #------------------------------------------------------------------------------------------------------------------
 # 2026-09-08 - Created
 # 2026-09-09 - Drop global prevFinalTime and let it be just interal to fmu_explore_fmpy
+# 2026-09-18 - Decrease the framework to what is necessary and move matlotlib to the other setup-file
 #------------------------------------------------------------------------------------------------------------------
 
 #------------------------------------------------------------------------------------------------------------------
@@ -10,11 +11,8 @@
 #------------------------------------------------------------------------------------------------------------------
 
 # Setup framework
-import sys
 import platform
 import locale
-import numpy as np 
-import matplotlib.pyplot as plt 
 from fmpy import simulate_fmu
 from fmpy import read_model_description
 

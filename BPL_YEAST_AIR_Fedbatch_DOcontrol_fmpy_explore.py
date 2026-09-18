@@ -1,7 +1,18 @@
-# setup application functions BPL_YEAST_AIR_Fedbatch, dependent on previous import of functions from fmu_explore 
+# Setup application functions BPL_YEAST_AIR_Fedbatch, dependent on previous import of functions from fmu_explore 
 # Author: Jan Peter Axelsson
 #------------------------------------------------------------------------------------------------------------------
 # 2026-09-08 - Created
+# 2026-09-17 - Bring in matplotlib.pylot since used here
+#------------------------------------------------------------------------------------------------------------------
+
+#------------------------------------------------------------------------------------------------------------------
+#  Framework
+#------------------------------------------------------------------------------------------------------------------
+
+import matplotlib.pyplot as plt 
+
+#------------------------------------------------------------------------------------------------------------------
+#  Specific application constructs:  newplot(), describe()
 #------------------------------------------------------------------------------------------------------------------
 
 # Define standard diagrams
