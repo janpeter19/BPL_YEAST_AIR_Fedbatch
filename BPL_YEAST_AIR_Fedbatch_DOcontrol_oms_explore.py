@@ -21,11 +21,11 @@ import matplotlib.pyplot as plt
 # --------------------------------------------------------------------------------------------------
 
 
-def newplot(title="Yeast fedbatch cultivation", plotType="TimeSeries"):
+def newplot(title="Yeast fedbatch cultivation", plotType="Overview"):
     """Standard plot window
      title = ''
     two possible diagrams
-       diagram = 'TimeSeries' default
+       diagram = 'Overview' default
        diagram = 'TimeSeriesExtended', 'Extended'"""
 
     # Reset pens
@@ -199,7 +199,7 @@ def newplot(title="Yeast fedbatch cultivation", plotType="TimeSeries"):
             "ax[0].plot(t,sim_res['Fedbatch_DOcontrol.DO_setpoint.out'],color='r',linestyle='--')"
         )
         diagrams.append(
-            "ax[1].step(t,sim_res[Fedbatch_DOcontrol.'bioreactor.N'],color='b',linestyle=linetype)"
+            "ax[1].step(t,sim_res['Fedbatch_DOcontrol.bioreactor.N'],color='b',linestyle=linetype)"
         )
         diagrams.append("ax[1].set_ylim([0,2500])")
         diagrams.append(
