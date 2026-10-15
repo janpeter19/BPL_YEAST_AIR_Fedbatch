@@ -157,10 +157,10 @@ def newplot(title="Yeast fedbatch cultivation", plotType="Overview"):
             "ax[7].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'],color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[9].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.bioreactor.culture.qO2'],color='b',linestyle=linetype)"
+            "ax[9].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'],color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[11].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.bioreactor.culture.Qspec'],color='b',linestyle=linetype)"
+            "ax[11].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.culture.Qspec'],color='b',linestyle=linetype)"
         )
 
     elif plotType in ["Focus DO-control"]:
@@ -203,7 +203,7 @@ def newplot(title="Yeast fedbatch cultivation", plotType="Overview"):
         )
         diagrams.append("ax[1].set_ylim([0,2500])")
         diagrams.append(
-            "ax[2].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.bioreactor.culture.qO2'],color='b',linestyle=linetype)"
+            "ax[2].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'],color='b',linestyle=linetype)"
         )
         diagrams.append(
             "ax[3].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.inlet[1].F'],color='b',linestyle=linetype)"
