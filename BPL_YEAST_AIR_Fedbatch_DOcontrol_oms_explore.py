@@ -6,6 +6,7 @@
 # 2026-09-18 - Brought numpy back here since used in several notebooks
 # 2026-09-22 - Change indentaiton from 3 spaces to 4 using black
 # 2026-10-15 - Import for oms related handling using DyMat
+# 2026-10-16 - Further corrections in newplot()
 # ------------------------------------------------------------------------------------------------------------------
 
 # --------------------------------------------------------------------------------------------------
@@ -29,7 +30,7 @@ def newplot(title="Yeast fedbatch cultivation", plotType="Overview"):
        diagram = 'TimeSeriesExtended', 'Extended'"""
     
     # Bring in the file
-    sim_res = Application.sim:_res 
+    sim_res = Application.sim_res 
 
     # Reset pens
     resetPen()
