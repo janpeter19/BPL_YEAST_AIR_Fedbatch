@@ -53,17 +53,17 @@ def newplot(title="Yeast fedbatch cultivation", plotType="Overview"):
 
         ax.clear()
         ax.append(ax11)  #  0
-        ax.append(ax12)  #  1
+#        ax.append(ax12)  #  1
         ax.append(ax21)  #  2
-        ax.append(ax22)  #  3
+#        ax.append(ax22)  #  3
         ax.append(ax31)  #  4
-        ax.append(ax32)  #  5
+#        ax.append(ax32)  #  5
         ax.append(ax41)  #  6
-        ax.append(ax42)  #  7
+#        ax.append(ax42)  #  7
         ax.append(ax51)  #  8
-        ax.append(ax52)  #  9
+#        ax.append(ax52)  #  9
         ax.append(ax61)  # 10
-        ax.append(ax62)  # 11
+#        ax.append(ax62)  # 11
         ax.append(ax71)  # 12
 
         ax[0].set_title(title)
