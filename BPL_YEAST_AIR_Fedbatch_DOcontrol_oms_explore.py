@@ -27,6 +27,9 @@ def newplot(title="Yeast fedbatch cultivation", plotType="Overview"):
     two possible diagrams
        diagram = 'Overview' default
        diagram = 'TimeSeriesExtended', 'Extended'"""
+    
+    # Bring in the file
+    sim_res = Application.sim:_res 
 
     # Reset pens
     resetPen()
@@ -108,59 +111,59 @@ def newplot(title="Yeast fedbatch cultivation", plotType="Overview"):
         # List of commands to be executed by simu() after a simulation
         diagrams.clear()
         diagrams.append(
-            "ax[0].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.c[2]'],color='b',linestyle=linetype)"
+            "ax[0].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.c[2]'], color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[2].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.c[3]'],color='b',linestyle=linetype)"
+            "ax[2].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.c[3]'], color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[4].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.c[1]'],color='b',linestyle=linetype)"
+            "ax[4].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.c[1]'], color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[6].plot(t,sim_res['Fedbatch_DOcontrol.DOsensor.out'],color='b',linestyle=linetype)"
+            "ax[6].plot(t, sim_res['Fedbatch_DOcontrol.DOsensor.out'], color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[6].plot(t,sim_res['Fedbatch_DOcontrol.DO_setpoint.out'],color='y',linestyle='--')"
+            "ax[6].plot(t, sim_res['Fedbatch_DOcontrol.DO_setpoint.out'], color='y',linestyle='--')"
         )
         diagrams.append(
-            "ax[8].step(t,sim_res['Fedbatch_DOcontrol.bioreactor.N'],color='c',linestyle=linetype)"
+            "ax[8].step(t, sim_res['Fedbatch_DOcontrol.bioreactor.N'], color='c',linestyle=linetype)"
         )
         diagrams.append("ax[8].set_ylim([0,1700])")
         diagrams.append(
-            "ax[10].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.inlet[1].F'],color='c',linestyle=linetype)"
+            "ax[10].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.inlet[1].F'], color='c',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[12].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.V'],color='b',linestyle=linetype)"
+            "ax[12].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.V'], color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[12].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.V_tot'],color='y', linestyle='--')"
+            "ax[12].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.V_tot'], color='y', linestyle='--')"
         )
         diagrams.append("ax[12].set_ylim([0, 9.0])")
 
         diagrams.append(
-            "ax[1].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.culture.qGm'], color='r', linestyle=linetype)"
+            "ax[1].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.culture.qGm'], color='r', linestyle=linetype)"
         )
         diagrams.append(
-            "ax[1].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.culture.qGr'], color='b', linestyle=linetype)"
+            "ax[1].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.culture.qGr'], color='b', linestyle=linetype)"
         )
         diagrams.append(
             "ax[3].plot(t,-sim_res['Fedbatch_DOcontrol.bioreactor.culture.qEm'], color='r', linestyle=linetype)"
         )
         diagrams.append(
-            "ax[3].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.culture.qEr'], color='b', linestyle=linetype)"
+            "ax[3].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.culture.qEr'], color='b', linestyle=linetype)"
         )
         diagrams.append(
-            "ax[5].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.culture.q[1]'],color='b',linestyle=linetype)"
+            "ax[5].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.culture.q[1]'], color='b',linestyle=linetype)"
         )
 
         diagrams.append(
-            "ax[7].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'],color='b',linestyle=linetype)"
+            "ax[7].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'], color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[9].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'],color='b',linestyle=linetype)"
+            "ax[9].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'], color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[11].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.culture.Qspec'],color='b',linestyle=linetype)"
+            "ax[11].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.culture.Qspec'], color='b',linestyle=linetype)"
         )
 
     elif plotType in ["Focus DO-control"]:
@@ -193,20 +196,20 @@ def newplot(title="Yeast fedbatch cultivation", plotType="Overview"):
         # List of commands to be executed by simu() after a simulation
         diagrams.clear()
         diagrams.append(
-            "ax[0].plot(t,sim_res['Fedbatch_DOcontrol.DOsensor.out'],color='b',linestyle=linetype)"
+            "ax[0].plot(t, sim_res['Fedbatch_DOcontrol.DOsensor.out'], color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[0].plot(t,sim_res['Fedbatch_DOcontrol.DO_setpoint.out'],color='r',linestyle='--')"
+            "ax[0].plot(t, sim_res['Fedbatch_DOcontrol.DO_setpoint.out'], color='r',linestyle='--')"
         )
         diagrams.append(
-            "ax[1].step(t,sim_res['Fedbatch_DOcontrol.bioreactor.N'],color='b',linestyle=linetype)"
+            "ax[1].step(t, sim_res['Fedbatch_DOcontrol.bioreactor.N'], color='b',linestyle=linetype)"
         )
         diagrams.append("ax[1].set_ylim([0,2500])")
         diagrams.append(
-            "ax[2].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'],color='b',linestyle=linetype)"
+            "ax[2].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'], color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[3].plot(t,sim_res['Fedbatch_DOcontrol.bioreactor.inlet[1].F'],color='b',linestyle=linetype)"
+            "ax[3].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.inlet[1].F'], color='b',linestyle=linetype)"
         )
 
     else:
