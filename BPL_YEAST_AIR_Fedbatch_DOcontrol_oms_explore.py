@@ -137,7 +137,7 @@ def newplot(title="Yeast fedbatch cultivation", plotType="Overview"):
             "ax[12].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.V'], color='b',linestyle=linetype)"
         )
         diagrams.append(
-            "ax[12].plot([Application.t[0], Application.t[-1]], sim_res['Fedbatch_DOcontrol.bioreactor.V_tot'], color='y', linestyle='--')"
+            "ax[12].plot([t[0], t[-1]], sim_res['Fedbatch_DOcontrol.bioreactor.V_tot'], color='y', linestyle='--')"
         )
         diagrams.append("ax[12].set_ylim([0, 9.0])")
 
