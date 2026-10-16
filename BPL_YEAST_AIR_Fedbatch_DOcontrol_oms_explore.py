@@ -153,13 +153,13 @@ def newplot(title="Yeast fedbatch cultivation", plotType="Overview"):
         diagrams.append(
             "ax[3].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.culture.qEr'], color='b', linestyle=linetype)"
         )
-#        diagrams.append(
-#            "ax[5].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.culture.q[1]'], color='b',linestyle=linetype)"
-#        )
-#
-#        diagrams.append(
-#            "ax[7].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'], color='b',linestyle=linetype)"
-#        )
+        diagrams.append(
+            "ax[5].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.culture.q[1]'], color='b',linestyle=linetype)"
+        )
+
+        diagrams.append(
+            "ax[7].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'], color='b',linestyle=linetype)"
+        )
 #        diagrams.append(
 #            "ax[9].plot(t, sim_res['Fedbatch_DOcontrol.bioreactor.m[1]']*sim_res['Fedbatch_DOcontrol.bioreactor.culture.qO2'], color='b',linestyle=linetype)"
 #        )
