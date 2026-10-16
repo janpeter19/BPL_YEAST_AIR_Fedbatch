@@ -6,7 +6,7 @@
 # 2026-09-18 - Brought numpy back here since used in several notebooks
 # 2026-09-22 - Change indentaiton from 3 spaces to 4 using black
 # 2026-10-15 - Import for oms related handling using DyMat
-# 2026-10-16 - Further corrections in newplot()
+# 2026-10-16 - Further corrections in newplot() and note that Vtot is stored only at start and end point
 # ------------------------------------------------------------------------------------------------------------------
 
 # --------------------------------------------------------------------------------------------------
