@@ -21,7 +21,7 @@ You start up the notebook in Colab by pressing here
 or alternatively 
 [start BPL notebook with FMPy](https://colab.research.google.com/github/janpeter19/BPL_YEAST_AIR_Fedbatch/blob/main/BPL_YEAST_AIR_Fedbatch_fmpy_colab.ipynb)
 or (experimentally)
-[start BPL notebook with OMSimulator](https://colab.research.google.com/github/janpeter19/BPL_YEAST_AIR_Fedbatch/blob/main/BPL_YEAST_AIR_Fedbatch_test_colab.ipynb).
+[start BPL notebook with OMSimulator](https://colab.research.google.com/github/janpeter19/BPL_YEAST_AIR_Fedbatch/blob/main/BPL_YEAST_AIR_Fedbatch_oms_colab.ipynb).
 Then you in the menu choose Runtime/Run all. 
 Then you in the menu choose Runtime/Run all. 
 The subsequent execution of the simulations of microbial growth take just a second or so. 
